@@ -78,6 +78,32 @@ body.open .mus{display:flex}
 .bor svg{width:100%;max-width:680px;height:auto;display:block;overflow:visible}
 .inv .s>.bor{transform:translateY(70px)}
 .inv .s.in>.bor{transform:none;transition-duration:2s}
+.inv.jawa .door{width:50.3%;transform:perspective(1400px) rotateY(0deg);backface-visibility:hidden}
+.inv.jawa .door.l{transform-origin:0 50%}
+.inv.jawa .door.r{transform-origin:100% 50%}
+body.open.jawa .door.l{transform:perspective(1400px) rotateY(-100deg)}
+body.open.jawa .door.r{transform:perspective(1400px) rotateY(100deg)}
+.inv.jawa .gimg{position:absolute;top:5vh;height:min(52vh,112vw);width:auto;max-width:none;filter:drop-shadow(0 16px 24px rgba(40,18,4,.6))}
+.inv.jawa .door.l .gimg{right:0;transform:translateX(50%)}
+.inv.jawa .door.r .gimg{left:0;transform:translateX(-50%)}
+.bor.bph{top:0}
+.bor.bph img{width:100%;height:100%;object-fit:cover;object-position:center bottom;display:block}
+.bor.bph::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(20,10,5,.8) 0%,rgba(20,10,5,.3) 48%,rgba(20,10,5,.05) 100%)}
+.inv .s>.bor.bph{transform:none}
+.inv .s.in .bph img{animation:kb 20s ease-out forwards}
+@keyframes kb{from{transform:scale(1)}to{transform:scale(1.12)}}
+.wy{height:min(26vh,210px);width:auto;max-width:70%;filter:drop-shadow(0 10px 16px rgba(0,0,0,.55));margin-bottom:6px;transform-origin:50% 100%}
+.inv .s.in>.wy{animation:sway 5s ease-in-out infinite alternate}
+@keyframes sway{from{transform:rotate(-1.6deg)}to{transform:rotate(1.6deg)}}
+.cvimg{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:50% 50%;z-index:-2;pointer-events:none;transform:scale(1);transition:transform 2.6s cubic-bezier(.2,.7,.2,1)}
+.covimg .cover::before{content:"";position:absolute;inset:0;z-index:-1;pointer-events:none;background:linear-gradient(0deg,rgba(20,10,5,.88) 0%,rgba(20,10,5,.6) 32%,rgba(20,10,5,0) 62%)}
+.inv.jawa.covimg .cover{color:#f6e7c8;transition:opacity 1.8s ease .25s}
+.inv.jawa.covimg .cover small{color:#e8bb63}
+.inv.jawa.covimg #ob{background:#d9a441!important;color:#2a1508!important}
+.covimg .cover>*:not(.cvimg){transition:opacity .5s ease}
+body.open.covimg .cover>*:not(.cvimg){opacity:0}
+body.open.covimg .cover .cvimg{transform:scale(1.35)}
+@media (prefers-reduced-motion:reduce){.inv .s.in .bph img,.inv .s.in>.wy,.cvimg{animation:none!important;transition-duration:.01s!important}}
 @media (prefers-reduced-motion:reduce){.door,.cover,.inv .s::before,.inv .s>*{transition-duration:.01s!important;transition-delay:0s!important}}
 
 .gr{border-top:1px solid var(--line);padding:12px 0}
@@ -226,13 +252,18 @@ function borobudur(){
   return '<svg viewBox="0 0 400 190" preserveAspectRatio="xMidYMax meet" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">'+s+'</svg>';
 }
 
+function imgOk(src){return new Promise(function(res){var i=new Image(),t=setTimeout(function(){res(false)},4000);
+  i.onload=function(){clearTimeout(t);res(true)};i.onerror=function(){clearTimeout(t);res(false)};i.src=src})}
+
 async function publicView(sb,slug){
   var r=await sb.from('invitations').select('*, events(*)').eq('slug',slug).maybeSingle();
   if(r.error||!r.data){app.innerHTML='<h1>Undangan tidak ditemukan</h1><p>Linknya salah, atau undangan belum diaktifkan.</p>';return}
   var v=r.data,cf=v.theme_config||{},c=T[cf.palette]||T.zamrud,isJ=cf.palette==='jawa';
   var ev=(v.events||[]).sort(function(a,b){return a.sort_order-b.sort_order});
+  var im={};
+  if(isJ){var ck=await Promise.all(['gunungan.png','borobudur.jpg','wayang-pria.png','wayang-wanita.png','sampul.jpg'].map(imgOk));im={g:ck[0],b:ck[1],p:ck[2],w:ck[3],c:ck[4]}}
   document.title='Undangan '+v.groom_name+' & '+v.bride_name;
-  document.body.className='inv locked'+(isJ?' jawa':'');
+  document.body.className='inv locked'+(isJ?' jawa':'')+(im.c?' covimg':'');
   document.body.style.cssText='background:'+c.bg+';color:'+c.ink+';--a:'+c.acc+';--b:'+c.bg+';--b2:'+c.bg2+';--i:'+c.ink;
   document.documentElement.style.scrollSnapType='y proximity';
   app.className='';app.style.cssText='padding:0;max-width:none';
@@ -243,13 +274,13 @@ async function publicView(sb,slug){
     return '<div class="e"><h3>'+esc(e.name)+'</h3><p class="t">'+w.tgl+', '+w.jam+' WIB</p><p>'+esc(e.venue_name)+'</p>'+
     (/^https?:\/\//.test(e.map_url||'')?'<p style="margin-top:8px"><a class="m" href="'+esc(e.map_url)+'" target="_blank" rel="noopener">Lihat lokasi di peta</a></p>':'')+'</div>'}).join('');
   app.innerHTML=
-   (isJ?'<div class="door l" aria-hidden="true">'+gunungan('l')+'</div><div class="door r" aria-hidden="true">'+gunungan('r')+'</div>'
+   (isJ&&im.c?'':isJ?'<div class="door l" aria-hidden="true">'+(im.g?'<img class="gimg" src="gunungan.png" alt="">':gunungan('l'))+'</div><div class="door r" aria-hidden="true">'+(im.g?'<img class="gimg" src="gunungan.png" alt="">':gunungan('r'))+'</div>'
        :'<div class="door l" aria-hidden="true"><span>'+ini(v.groom_name)+'</span></div><div class="door r" aria-hidden="true"><span>'+ini(v.bride_name)+'</span></div>')+
-   '<div class="cover"><small>'+(isJ?'SUGENG RAWUH':'PERNIKAHAN')+'</small><h1 class="cn">'+esc(v.groom_name)+' &amp; '+esc(v.bride_name)+'</h1><p class="cg" id="cvg"></p><button class="pbtn" id="ob" style="'+btn+'">Buka undangan</button></div>'+
+   '<div class="cover">'+(im.c?'<img class="cvimg" src="sampul.jpg" alt="">':'')+'<small>'+(isJ?'SUGENG RAWUH':'PERNIKAHAN')+'</small><h1 class="cn">'+esc(v.groom_name)+' &amp; '+esc(v.bride_name)+'</h1><p class="cg" id="cvg"></p><button class="pbtn" id="ob" style="'+btn+'">Buka undangan</button></div>'+
    '<main>'+
-   '<section class="s" id="hero"><p class="k">'+(isJ?'PAWIWAHAN':'PERNIKAHAN')+'</p><h1 class="n">'+esc(v.groom_name)+'<i>&amp;</i>'+esc(v.bride_name)+'</h1><p class="d">'+(f0?f0.tgl.toUpperCase():'')+'</p><p class="p" id="kpd" style="margin-top:22px"></p>'+(isJ?'<div class="bor">'+borobudur()+'</div>':'')+'</section>'+
+   '<section class="s" id="hero"><p class="k">'+(isJ?'PAWIWAHAN':'PERNIKAHAN')+'</p><h1 class="n">'+esc(v.groom_name)+'<i>&amp;</i>'+esc(v.bride_name)+'</h1><p class="d">'+(f0?f0.tgl.toUpperCase():'')+'</p><p class="p" id="kpd" style="margin-top:22px"></p>'+(isJ?(im.b?'<div class="bor bph"><img src="borobudur.jpg" alt=""></div>':'<div class="bor">'+borobudur()+'</div>'):'')+'</section>'+
    (v.quote?'<section class="s"><p class="q">“'+esc(v.quote)+'”</p></section>':'')+
-   '<section class="s"><p class="k">MEMPELAI</p><h2 class="h">'+esc(v.groom_name)+'</h2><p class="p">'+esc(v.groom_parents)+'</p><h2 class="h">'+esc(v.bride_name)+'</h2><p class="p">'+esc(v.bride_parents)+'</p></section>'+
+   '<section class="s"><p class="k">'+(isJ?'MEMPELAI':'MEMPELAI')+'</p>'+(im.p?'<img class="wy" src="wayang-pria.png" alt="">':'')+'<h2 class="h">'+esc(v.groom_name)+'</h2><p class="p">'+esc(v.groom_parents)+'</p>'+(im.w?'<img class="wy" src="wayang-wanita.png" alt="">':'')+'<h2 class="h">'+esc(v.bride_name)+'</h2><p class="p">'+esc(v.bride_parents)+'</p></section>'+
    (cf.story?'<section class="s"><p class="k">KISAH KAMI</p><p class="story">'+esc(cf.story)+'</p></section>':'')+
    '<section class="s"><p class="k">ACARA</p><div>'+evh+'</div>'+(cf.dresscode?'<p class="p" style="margin:0">Dresscode: <b>'+esc(cf.dresscode)+'</b></p>':'')+'</section>'+
    (f0?'<section class="s"><p class="k">MENUJU HARI BAHAGIA</p><h2 class="h">Hitung mundur</h2><div class="cd" id="cd"><div><b id="c1">0</b><i>HARI</i></div><div><b id="c2">0</b><i>JAM</i></div><div><b id="c3">0</b><i>MENIT</i></div><div><b id="c4">0</b><i>DETIK</i></div></div></section>':'')+
@@ -366,7 +397,7 @@ function adminView(sb){
     palette=(inv&&inv.theme_config&&inv.theme_config.palette)||'zamrud';
     var cf0=(inv&&inv.theme_config)||{};
     var g=function(o,k){return esc(o&&o[k]||'')};
-    app.innerHTML='<h1>Editor undangan</h1><p class="msg">Versi 3.1 · tema jawa</p><p>Masuk sebagai '+esc(user.email)+' · <a href="#" id="out">Keluar</a></p><div class="panel">'+
+    app.innerHTML='<h1>Editor undangan</h1><p class="msg">Versi 3.3 · sampul wayang</p><p>Masuk sebagai '+esc(user.email)+' · <a href="#" id="out">Keluar</a></p><div class="panel">'+
     '<fieldset><legend>Mempelai</legend><div class="two"><div><label for="gn">Nama pria</label><input id="gn" value="'+g(inv,'groom_name')+'"></div><div><label for="bn">Nama wanita</label><input id="bn" value="'+g(inv,'bride_name')+'"></div></div>'+
     '<label for="gp">Orang tua pria</label><input id="gp" value="'+g(inv,'groom_parents')+'"><label for="bp">Orang tua wanita</label><input id="bp" value="'+g(inv,'bride_parents')+'"></fieldset>'+
     '<fieldset><legend>Akad</legend><div class="two"><div><label for="ad">Tanggal</label><input id="ad" type="date" value="'+ak.date+'"></div><div><label for="at">Jam (WIB)</label><input id="at" type="time" value="'+ak.jam+'"></div></div><label for="av">Lokasi</label><input id="av" value="'+g(ev[0],'venue_name')+'"></fieldset>'+
