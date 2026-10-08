@@ -27,6 +27,22 @@ textarea{min-height:70px}
 .sw button[aria-pressed="true"]{border-color:var(--acc);box-shadow:0 0 0 2px var(--acc)}
 button:focus-visible,input:focus-visible,textarea:focus-visible{outline:3px solid var(--acc);outline-offset:2px}
 .hide{display:none!important}
+.tpl{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-top:6px}
+.tc{display:flex;flex-direction:column;align-items:center;gap:4px;padding:8px 4px;border-radius:12px;border:2px solid var(--line);background:var(--card);color:var(--ink);cursor:pointer;font:inherit}
+.tc[aria-pressed="true"]{border-color:var(--acc);box-shadow:0 0 0 2px var(--acc)}
+.tc .tcs{width:100%;height:46px;border-radius:8px;display:grid;place-items:center;font-size:1.3rem}
+.tc b{font-size:.85rem}.tc small{color:var(--soft);font-size:.72rem}
+.demobar{position:fixed;left:12px;top:calc(12px + env(safe-area-inset-top,0px));z-index:80;background:rgba(0,0,0,.55);color:#fff;border-radius:99px;padding:8px 14px;font:600 .8rem sans-serif;text-decoration:none;backdrop-filter:blur(6px)}
+.tgrid{display:grid;grid-template-columns:repeat(2,1fr);gap:14px;margin:18px 0}
+.tcard{background:var(--card);border:1px solid var(--line);border-radius:16px;overflow:hidden;display:flex;flex-direction:column}
+.th{aspect-ratio:3/4;display:flex;align-items:flex-end;justify-content:center;overflow:hidden}
+.th b{align-self:center;font:italic 700 1.6rem Georgia,serif}
+.ths{width:100%}.ths svg{width:100%;display:block}
+.tb{padding:12px 14px 16px;display:flex;flex-direction:column;gap:6px;flex:1}
+.tb h2{font:700 1.1rem Georgia,serif;margin:2px 0 0}
+.tb p{color:var(--soft);font-size:.82rem;margin:0 0 8px;flex:1}
+.tb .btn{text-align:center;padding:10px 12px;font-size:.9rem;text-decoration:none}
+
 /* ===== Undangan: sampul, musik, animasi ===== */
 body.locked{overflow:hidden}
 .door{position:fixed;top:0;bottom:0;width:50%;background:var(--b);z-index:50;transition:transform 1.5s cubic-bezier(.77,0,.18,1);display:flex;align-items:center}
@@ -63,29 +79,29 @@ body.done .door,body.done .cover{display:none}
 .mus{position:fixed;right:16px;bottom:16px;z-index:70;width:46px;height:46px;border-radius:50%;border:1px solid var(--a);background:var(--b);color:var(--a);font:1.4rem/1 Georgia,serif;cursor:pointer;display:none;align-items:center;justify-content:center;overflow:hidden}
 body.open .mus{display:flex}
 .mus.off::after{content:"";position:absolute;width:60%;height:2px;background:var(--a);transform:rotate(-45deg)}
-.inv.jawa .door{background-color:#c98d3f;background-image:radial-gradient(ellipse at 50% 42%,#f8e1ab 0%,#e0a653 36%,#8a531f 74%,#3a1f0c 100%);background-size:200% 100%;border:0}
-.inv.jawa .door.l{background-position:left center}
-.inv.jawa .door.r{background-position:right center}
-.inv.jawa .door{align-items:flex-start;padding-top:8vh}
-.inv.jawa .cover{color:#2a1508}
-.inv.jawa .cover small{color:#5b3314;font-weight:700}
-.inv.jawa #ob{background:#2a1508!important;color:#f3e3c3!important}
-.inv.jawa .door svg{width:100%;height:min(52vh,110vw);max-height:520px;display:block}
-.inv.jawa .s::before{background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='56' height='56' viewBox='0 0 56 56'%3E%3Cg fill='none' stroke='%23d9a441' stroke-opacity='.16'%3E%3Cellipse cx='28' cy='14' rx='9' ry='14'/%3E%3Cellipse cx='28' cy='42' rx='9' ry='14'/%3E%3Cellipse cx='14' cy='28' rx='14' ry='9'/%3E%3Cellipse cx='42' cy='28' rx='14' ry='9'/%3E%3C/g%3E%3C/svg%3E")}
-.inv.jawa #hero{justify-content:flex-start;padding-top:12vh}
-.inv.jawa #hero::before{background:linear-gradient(180deg,#1b0f08 0%,#3b2111 45%,#9c5a22 80%,#e2a54c 100%)}
+.inv.eth .door{background-color:var(--dc);background-image:var(--doorbg);background-size:200% 100%;border:0}
+.inv.eth .door.l{background-position:left center}
+.inv.eth .door.r{background-position:right center}
+.inv.eth .door{align-items:flex-start;padding-top:8vh}
+.inv.eth .cover{color:var(--ctext)}
+.inv.eth .cover small{color:var(--ckick);font-weight:700}
+.inv.eth #ob{background:var(--btnbg)!important;color:var(--btntext)!important}
+.inv.eth .door svg{width:100%;height:min(52vh,110vw);max-height:520px;display:block}
+.inv.eth .s::before{background-image:var(--pat)}
+.inv.eth #hero{justify-content:flex-start;padding-top:12vh}
+.inv.eth #hero::before{background:var(--herobg)}
 .bor{position:absolute;left:0;right:0;bottom:0;z-index:-1;pointer-events:none;display:flex;justify-content:center}
 .bor svg{width:100%;max-width:680px;height:auto;display:block;overflow:visible}
 .inv .s>.bor{transform:translateY(70px)}
 .inv .s.in>.bor{transform:none;transition-duration:2s}
-.inv.jawa .door{width:50.3%;transform:perspective(1400px) rotateY(0deg);backface-visibility:hidden}
-.inv.jawa .door.l{transform-origin:0 50%}
-.inv.jawa .door.r{transform-origin:100% 50%}
-body.open.jawa .door.l{transform:perspective(1400px) rotateY(-100deg)}
-body.open.jawa .door.r{transform:perspective(1400px) rotateY(100deg)}
-.inv.jawa .gimg{position:absolute;top:5vh;height:min(52vh,112vw);width:auto;max-width:none;filter:drop-shadow(0 16px 24px rgba(40,18,4,.6))}
-.inv.jawa .door.l .gimg{right:0;transform:translateX(50%)}
-.inv.jawa .door.r .gimg{left:0;transform:translateX(-50%)}
+.inv.eth .door{width:50.3%;transform:perspective(1400px) rotateY(0deg);backface-visibility:hidden}
+.inv.eth .door.l{transform-origin:0 50%}
+.inv.eth .door.r{transform-origin:100% 50%}
+body.open.eth .door.l{transform:perspective(1400px) rotateY(-100deg)}
+body.open.eth .door.r{transform:perspective(1400px) rotateY(100deg)}
+.inv.eth .gimg{position:absolute;top:5vh;height:min(52vh,112vw);width:auto;max-width:none;filter:drop-shadow(0 16px 24px rgba(40,18,4,.6))}
+.inv.eth .door.l .gimg{right:0;transform:translateX(50%)}
+.inv.eth .door.r .gimg{left:0;transform:translateX(-50%)}
 .bor.bph{top:0}
 .bor.bph img{width:100%;height:100%;object-fit:cover;object-position:center bottom;display:block}
 .bor.bph::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(20,10,5,.8) 0%,rgba(20,10,5,.3) 48%,rgba(20,10,5,.05) 100%)}
@@ -97,9 +113,9 @@ body.open.jawa .door.r{transform:perspective(1400px) rotateY(100deg)}
 @keyframes sway{from{transform:rotate(-1.6deg)}to{transform:rotate(1.6deg)}}
 .cvimg{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:50% 50%;z-index:-2;pointer-events:none;transform:scale(1);transition:transform 2.6s cubic-bezier(.2,.7,.2,1)}
 .covimg .cover::before{content:"";position:absolute;inset:0;z-index:-1;pointer-events:none;background:linear-gradient(0deg,rgba(20,10,5,.88) 0%,rgba(20,10,5,.6) 32%,rgba(20,10,5,0) 62%)}
-.inv.jawa.covimg .cover{color:#f6e7c8;transition:opacity 1.8s ease .25s}
-.inv.jawa.covimg .cover small{color:#e8bb63}
-.inv.jawa.covimg #ob{background:#d9a441!important;color:#2a1508!important}
+.inv.eth.covimg .cover{color:#f6e7c8;transition:opacity 1.8s ease .25s}
+.inv.eth.covimg .cover small{color:#e8bb63}
+.inv.eth.covimg #ob{background:#d9a441!important;color:#2a1508!important}
 .covimg .cover>*:not(.cvimg){transition:opacity .5s ease}
 body.open.covimg .cover>*:not(.cvimg){opacity:0}
 body.open.covimg .cover .cvimg{transform:scale(1.35)}
@@ -144,7 +160,8 @@ var T={zamrud:{bg:'#0f2421',ink:'#f1e6cf',acc:'#d3ae62',bg2:'#163330'},
        blush:{bg:'#f2d7d5',ink:'#4a1f2e',acc:'#9c3b57',bg2:'#ecc4c1'},
        langit:{bg:'#dfe8f5',ink:'#1f2f5c',acc:'#3b5fb0',bg2:'#cddcef'},
        senja:{bg:'#2a1a3d',ink:'#f5d9ff',acc:'#e0a3ff',bg2:'#3a2552'},
-       jawa:{bg:'#1e1109',ink:'#f3e3c3',acc:'#d9a441',bg2:'#2e1b0e'}};
+       jawa:{bg:'#1e1109',ink:'#f3e3c3',acc:'#d9a441',bg2:'#2e1b0e'},
+       bugis:{bg:'#2a0a10',ink:'#f7e8cf',acc:'#e0b04a',bg2:'#3d1018'}};
 var $=function(i){return document.getElementById(i)};
 var app=$('app');
 function esc(s){return String(s==null?'':s).replace(/[&<>"']/g,function(c){return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]})}
@@ -157,12 +174,13 @@ function slugify(s){return s.toLowerCase().replace(/[^a-z0-9]+/g,'-').replace(/^
 
 if(SUPABASE_URL.indexOf('GANTI')===0){
   app.innerHTML='<h1>Belum disambungkan</h1><p>Buka file ini dengan editor teks, lalu isi <b>SUPABASE_URL</b> dan <b>SUPABASE_ANON_KEY</b> di bagian atas skrip.</p>';
-} else { start() }
+} else { setTimeout(start,0) }
 
 function start(){
   var sb=supabase.createClient(SUPABASE_URL,SUPABASE_ANON_KEY);
   var slugParam=new URLSearchParams(location.search).get('u');
-  if(slugParam){publicView(sb,slugParam)}else{adminView(sb)}
+  var qq=new URLSearchParams(location.search);
+  if(qq.get('demo')){demoView(qq.get('demo'))}else if(qq.get('katalog')){catalogView()}else if(slugParam){publicView(sb,slugParam)}else{adminView(sb)}
 }
 
 /* ---------- Halaman publik ---------- */
@@ -179,6 +197,13 @@ function makeMusic(style){
   }
   function bar(){
     var t=ac.currentTime+.05,c=chords[step%4];
+    if(style==='bugis'){
+      var ps=[329.63,392,440,523.25,587.33,659.25];
+      var drum=function(tt,f,vol){var o=ac.createOscillator(),g=ac.createGain();o.type='sine';o.frequency.setValueAtTime(f*2,tt);o.frequency.exponentialRampToValueAtTime(f,tt+.12);g.gain.setValueAtTime(vol,tt);g.gain.exponentialRampToValueAtTime(.0001,tt+.4);o.connect(g);g.connect(master);o.start(tt);o.stop(tt+.45)};
+      drum(t,90,.32);drum(t+2,90,.28);drum(t+3.25,70,.2);
+      [[0,2,1,3,2,4,3,5],[5,3,4,2,3,1,2,0]][step%2].forEach(function(k,i){note(ps[k],t+i*.5,1.1,.12,'triangle');note(ps[k]*2,t+i*.5,.5,.03,'sine')});
+      step++;return;
+    }
     if(style==='jawa'){
       var f0=220,sc=function(k){return f0*Math.pow(2,k*.2)};
       var bell=function(f,tt){note(f,tt,2.4,.1,'sine');note(f*2.76,tt,.8,.03,'sine')};
@@ -252,19 +277,75 @@ function borobudur(){
   return '<svg viewBox="0 0 400 190" preserveAspectRatio="xMidYMax meet" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">'+s+'</svg>';
 }
 
+var TEMPLATES=[
+ {code:'zamrud',name:'Zamrud',cat:'Klasik',desc:'Hijau dan emas yang elegan'},
+ {code:'blush',name:'Blush',cat:'Klasik',desc:'Merah muda lembut dan romantis'},
+ {code:'langit',name:'Langit',cat:'Klasik',desc:'Biru segar dan modern'},
+ {code:'senja',name:'Senja',cat:'Klasik',desc:'Ungu hangat dan dramatis'},
+ {code:'jawa',name:'Adat Jawa',cat:'Adat',desc:'Gunungan wayang kulit, Borobudur terbit, batik kawung, dan gamelan'},
+ {code:'bugis',name:'Adat Bugis',cat:'Adat',desc:'Rumah Bugis, perahu Pinisi, motif sulapa eppa, dan petikan kecapi'}
+];
+var JAWA_PAT='url("data:image/svg+xml,%3Csvg xmlns=%27http://www.w3.org/2000/svg%27 width=%2756%27 height=%2756%27 viewBox=%270 0 56 56%27%3E%3Cg fill=%27none%27 stroke=%27%23d9a441%27 stroke-opacity=%27.16%27%3E%3Cellipse cx=%2728%27 cy=%2714%27 rx=%279%27 ry=%2714%27/%3E%3Cellipse cx=%2728%27 cy=%2742%27 rx=%279%27 ry=%2714%27/%3E%3Cellipse cx=%2714%27 cy=%2728%27 rx=%2714%27 ry=%279%27/%3E%3Cellipse cx=%2742%27 cy=%2728%27 rx=%2714%27 ry=%279%27/%3E%3C/g%3E%3C/svg%3E")';
+var BUGIS_PAT='url("data:image/svg+xml,%3Csvg xmlns=%27http://www.w3.org/2000/svg%27 width=%2744%27 height=%2744%27 viewBox=%270 0 44 44%27%3E%3Cg fill=%27none%27 stroke=%27%23e0b04a%27 stroke-opacity=%27.17%27%3E%3Cpath d=%27M22 3 L41 22 L22 41 L3 22Z%27/%3E%3Cpath d=%27M22 12 L32 22 L22 32 L12 22Z%27/%3E%3C/g%3E%3C/svg%3E")';
+var ETH={
+ jawa:{kick:'PAWIWAHAN',greet:'SUGENG RAWUH',door:gunungan,scene:borobudur,music:'jawa',
+  img:{door:'gunungan.png',scene:'borobudur.jpg',pria:'wayang-pria.png',wanita:'wayang-wanita.png',cover:'sampul.jpg'},
+  v:{dc:'#c98d3f',doorbg:'radial-gradient(ellipse at 50% 42%,#f8e1ab 0%,#e0a653 36%,#8a531f 74%,#3a1f0c 100%)',herobg:'linear-gradient(180deg,#1b0f08 0%,#3b2111 45%,#9c5a22 80%,#e2a54c 100%)',pat:JAWA_PAT,ctext:'#2a1508',ckick:'#5b3314',btnbg:'#2a1508',btntext:'#f3e3c3'}},
+ bugis:{kick:'PERNIKAHAN ADAT BUGIS',greet:"TABE'",door:bola,scene:pinisi,music:'bugis',
+  img:{door:'bugis-pintu.png',scene:'bugis-pinisi.jpg',pria:'bugis-pria.png',wanita:'bugis-wanita.png',cover:'bugis-sampul.jpg'},
+  v:{dc:'#8a1e26',doorbg:'radial-gradient(ellipse at 50% 42%,#ffd98a 0%,#e07a3a 38%,#8a1e26 74%,#34080e 100%)',herobg:'linear-gradient(180deg,#240810 0%,#5a1620 48%,#c0502a 82%,#f0a640 100%)',pat:BUGIS_PAT,ctext:'#2a0a0e',ckick:'#5a1620',btnbg:'#2a0a0e',btntext:'#ffe6b8'}}
+};
+
+function tplCards(sel){
+  return TEMPLATES.map(function(t){var p=T[t.code];
+    return '<button type="button" class="tc" data-t="'+t.code+'" aria-pressed="'+(t.code===sel)+'"><span class="tcs" style="background:linear-gradient(135deg,'+p.bg+','+p.bg2+');color:'+p.acc+'">'+(ETH[t.code]?'✦':'●')+'</span><b>'+esc(t.name)+'</b><small>'+esc(t.cat)+'</small></button>'}).join('');
+}
+
+function bola(half){
+  var D='#1a0508',G='#e0b04a',s='';
+  [30,52,76,100,124,148,170].forEach(function(x){s+='<rect x="'+(x-3)+'" y="206" width="6" height="86" fill="'+D+'"/>'});
+  s+='<rect x="16" y="200" width="168" height="10" fill="'+D+'" stroke="'+G+'" stroke-width="1"/>';
+  s+='<rect x="34" y="134" width="132" height="68" fill="'+D+'" stroke="'+G+'" stroke-width="1.4"/>';
+  s+='<rect x="46" y="150" width="28" height="36" fill="none" stroke="'+G+'" stroke-width="1.4"/><rect x="126" y="150" width="28" height="36" fill="none" stroke="'+G+'" stroke-width="1.4"/>';
+  s+='<path d="M86 202 V164 Q100 148 114 164 V202" fill="#3a0d12" stroke="'+G+'" stroke-width="1.4"/>';
+  s+='<path d="M8 138 L100 30 L192 138 Z" fill="'+D+'" stroke="'+G+'" stroke-width="2"/>';
+  s+='<path d="M44 128 L100 62 L156 128 Z" fill="none" stroke="'+G+'" stroke-width="1.2" opacity=".8"/>';
+  s+='<path d="M100 30 L100 12" stroke="'+G+'" stroke-width="2"/><path d="M92 18 L100 8 L108 18" fill="none" stroke="'+G+'" stroke-width="1.6"/>';
+  s+='<path d="M100 78 L118 100 L100 122 L82 100 Z" fill="none" stroke="'+G+'" stroke-width="1.6"/><path d="M100 90 L109 100 L100 110 L91 100 Z" fill="'+G+'"/>';
+  s+='<path d="M92 210 L88 292 M108 210 L112 292" stroke="'+G+'" stroke-width="1.6"/>';
+  for(var y=224;y<290;y+=12){s+='<path d="M'+(91-(y-210)*.05)+' '+y+' H'+(109+(y-210)*.05)+'" stroke="'+G+'" stroke-width="1.4"/>'}
+  var vb=half==='l'?'0 0 100 300':'100 0 100 300',par=half==='l'?'xMaxYMid meet':'xMinYMid meet';
+  return '<svg viewBox="'+vb+'" preserveAspectRatio="'+par+'" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">'+s+'</svg>';
+}
+
+function pinisi(){
+  var D='#1a0508',G='#e0b04a',s='';
+  s+='<defs><radialGradient id="sun2" cx="50%" cy="50%" r="50%"><stop offset="0" stop-color="#ffd37a" stop-opacity=".95"/><stop offset="1" stop-color="#ff8a3d" stop-opacity="0"/></radialGradient></defs>';
+  s+='<circle cx="210" cy="92" r="112" fill="url(#sun2)"/><circle cx="210" cy="98" r="26" fill="#ffd98a" opacity=".9"/>';
+  s+='<path d="M150 46 V134 L100 134 Z" fill="'+D+'" stroke="'+G+'" stroke-width=".8"/>';
+  s+='<path d="M232 52 V134 L184 134 Z" fill="'+D+'" stroke="'+G+'" stroke-width=".8"/>';
+  s+='<path d="M366 110 L236 56 L318 134 Z" fill="'+D+'" stroke="'+G+'" stroke-width=".8"/>';
+  s+='<path d="M342 122 L236 72 L300 134 Z" fill="'+D+'" stroke="'+G+'" stroke-width=".8"/>';
+  s+='<path d="M150 40 V136 M232 48 V136" stroke="'+G+'" stroke-width="1.6"/>';
+  s+='<path d="M60 132 L330 132 L368 108 L346 148 Q205 186 82 158 Z" fill="'+D+'" stroke="'+G+'" stroke-width="1"/>';
+  s+='<rect x="64" y="118" width="34" height="14" fill="'+D+'"/>';
+  s+='<path d="M0 162 Q40 152 80 162 T160 162 T240 162 T320 162 T400 162 V190 H0Z" fill="#12040a" opacity=".92"/>';
+  s+='<path d="M0 176 Q50 168 100 176 T200 176 T300 176 T400 176 V190 H0Z" fill="'+D+'"/>';
+  return '<svg viewBox="0 0 400 190" preserveAspectRatio="xMidYMax meet" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">'+s+'</svg>';
+}
+
 function imgOk(src){return new Promise(function(res){var i=new Image(),t=setTimeout(function(){res(false)},4000);
   i.onload=function(){clearTimeout(t);res(true)};i.onerror=function(){clearTimeout(t);res(false)};i.src=src})}
 
-async function publicView(sb,slug){
-  var r=await sb.from('invitations').select('*, events(*)').eq('slug',slug).maybeSingle();
-  if(r.error||!r.data){app.innerHTML='<h1>Undangan tidak ditemukan</h1><p>Linknya salah, atau undangan belum diaktifkan.</p>';return}
-  var v=r.data,cf=v.theme_config||{},c=T[cf.palette]||T.zamrud,isJ=cf.palette==='jawa';
-  var ev=(v.events||[]).sort(function(a,b){return a.sort_order-b.sort_order});
+async function renderInvitation(sb,v,demo){
+  var cf=v.theme_config||{},c=T[cf.palette]||T.zamrud,tp=ETH[cf.palette]||null;
+  var ev=(v.events||[]).slice().sort(function(a,b){return a.sort_order-b.sort_order});
   var im={};
-  if(isJ){var ck=await Promise.all(['gunungan.png','borobudur.jpg','wayang-pria.png','wayang-wanita.png','sampul.jpg'].map(imgOk));im={g:ck[0],b:ck[1],p:ck[2],w:ck[3],c:ck[4]}}
+  if(tp){var nm=['door','scene','pria','wanita','cover'];var ck=await Promise.all(nm.map(function(n){return imgOk(tp.img[n])}));nm.forEach(function(n,i){im[n]=ck[i]})}
   document.title='Undangan '+v.groom_name+' & '+v.bride_name;
-  document.body.className='inv locked'+(isJ?' jawa':'')+(im.c?' covimg':'');
+  document.body.className='inv locked'+(tp?' eth '+cf.palette:'')+(im.cover?' covimg':'');
   document.body.style.cssText='background:'+c.bg+';color:'+c.ink+';--a:'+c.acc+';--b:'+c.bg+';--b2:'+c.bg2+';--i:'+c.ink;
+  if(tp){Object.keys(tp.v).forEach(function(k){document.body.style.setProperty('--'+k,tp.v[k])})}
   document.documentElement.style.scrollSnapType='y proximity';
   app.className='';app.style.cssText='padding:0;max-width:none';
   var f0=ev[0]?wib(ev[0].starts_at):null;
@@ -273,14 +354,17 @@ async function publicView(sb,slug){
   var evh=ev.map(function(e){var w=wib(e.starts_at);
     return '<div class="e"><h3>'+esc(e.name)+'</h3><p class="t">'+w.tgl+', '+w.jam+' WIB</p><p>'+esc(e.venue_name)+'</p>'+
     (/^https?:\/\//.test(e.map_url||'')?'<p style="margin-top:8px"><a class="m" href="'+esc(e.map_url)+'" target="_blank" rel="noopener">Lihat lokasi di peta</a></p>':'')+'</div>'}).join('');
+  var doors=tp
+    ?(im.cover?'':'<div class="door l" aria-hidden="true">'+(im.door?'<img class="gimg" src="'+tp.img.door+'" alt="">':tp.door('l'))+'</div><div class="door r" aria-hidden="true">'+(im.door?'<img class="gimg" src="'+tp.img.door+'" alt="">':tp.door('r'))+'</div>')
+    :'<div class="door l" aria-hidden="true"><span>'+ini(v.groom_name)+'</span></div><div class="door r" aria-hidden="true"><span>'+ini(v.bride_name)+'</span></div>';
   app.innerHTML=
-   (isJ&&im.c?'':isJ?'<div class="door l" aria-hidden="true">'+(im.g?'<img class="gimg" src="gunungan.png" alt="">':gunungan('l'))+'</div><div class="door r" aria-hidden="true">'+(im.g?'<img class="gimg" src="gunungan.png" alt="">':gunungan('r'))+'</div>'
-       :'<div class="door l" aria-hidden="true"><span>'+ini(v.groom_name)+'</span></div><div class="door r" aria-hidden="true"><span>'+ini(v.bride_name)+'</span></div>')+
-   '<div class="cover">'+(im.c?'<img class="cvimg" src="sampul.jpg" alt="">':'')+'<small>'+(isJ?'SUGENG RAWUH':'PERNIKAHAN')+'</small><h1 class="cn">'+esc(v.groom_name)+' &amp; '+esc(v.bride_name)+'</h1><p class="cg" id="cvg"></p><button class="pbtn" id="ob" style="'+btn+'">Buka undangan</button></div>'+
+   (demo?'<a class="demobar" href="?katalog=1">← Katalog template</a>':'')+
+   doors+
+   '<div class="cover">'+(im.cover?'<img class="cvimg" src="'+tp.img.cover+'" alt="">':'')+'<small>'+(tp?tp.greet:'PERNIKAHAN')+'</small><h1 class="cn">'+esc(v.groom_name)+' &amp; '+esc(v.bride_name)+'</h1><p class="cg" id="cvg"></p><button class="pbtn" id="ob" style="'+btn+'">Buka undangan</button></div>'+
    '<main>'+
-   '<section class="s" id="hero"><p class="k">'+(isJ?'PAWIWAHAN':'PERNIKAHAN')+'</p><h1 class="n">'+esc(v.groom_name)+'<i>&amp;</i>'+esc(v.bride_name)+'</h1><p class="d">'+(f0?f0.tgl.toUpperCase():'')+'</p><p class="p" id="kpd" style="margin-top:22px"></p>'+(isJ?(im.b?'<div class="bor bph"><img src="borobudur.jpg" alt=""></div>':'<div class="bor">'+borobudur()+'</div>'):'')+'</section>'+
+   '<section class="s" id="hero"><p class="k">'+(tp?tp.kick:'PERNIKAHAN')+'</p><h1 class="n">'+esc(v.groom_name)+'<i>&amp;</i>'+esc(v.bride_name)+'</h1><p class="d">'+(f0?f0.tgl.toUpperCase():'')+'</p><p class="p" id="kpd" style="margin-top:22px"></p>'+(tp?(im.scene?'<div class="bor bph"><img src="'+tp.img.scene+'" alt=""></div>':'<div class="bor">'+tp.scene()+'</div>'):'')+'</section>'+
    (v.quote?'<section class="s"><p class="q">“'+esc(v.quote)+'”</p></section>':'')+
-   '<section class="s"><p class="k">'+(isJ?'MEMPELAI':'MEMPELAI')+'</p>'+(im.p?'<img class="wy" src="wayang-pria.png" alt="">':'')+'<h2 class="h">'+esc(v.groom_name)+'</h2><p class="p">'+esc(v.groom_parents)+'</p>'+(im.w?'<img class="wy" src="wayang-wanita.png" alt="">':'')+'<h2 class="h">'+esc(v.bride_name)+'</h2><p class="p">'+esc(v.bride_parents)+'</p></section>'+
+   '<section class="s"><p class="k">MEMPELAI</p>'+(im.pria?'<img class="wy" src="'+tp.img.pria+'" alt="">':'')+'<h2 class="h">'+esc(v.groom_name)+'</h2><p class="p">'+esc(v.groom_parents)+'</p>'+(im.wanita?'<img class="wy" src="'+tp.img.wanita+'" alt="">':'')+'<h2 class="h">'+esc(v.bride_name)+'</h2><p class="p">'+esc(v.bride_parents)+'</p></section>'+
    (cf.story?'<section class="s"><p class="k">KISAH KAMI</p><p class="story">'+esc(cf.story)+'</p></section>':'')+
    '<section class="s"><p class="k">ACARA</p><div>'+evh+'</div>'+(cf.dresscode?'<p class="p" style="margin:0">Dresscode: <b>'+esc(cf.dresscode)+'</b></p>':'')+'</section>'+
    (f0?'<section class="s"><p class="k">MENUJU HARI BAHAGIA</p><h2 class="h">Hitung mundur</h2><div class="cd" id="cd"><div><b id="c1">0</b><i>HARI</i></div><div><b id="c2">0</b><i>JAM</i></div><div><b id="c3">0</b><i>MENIT</i></div><div><b id="c4">0</b><i>DETIK</i></div></div></section>':'')+
@@ -288,8 +372,7 @@ async function publicView(sb,slug){
    '<section class="s" id="extra"><div class="xt"></div></section></main>'+
    '<button class="mus" id="mus" aria-label="Matikan musik">♪</button>';
 
-  // Musik + pembuka
-  var music=makeMusic(isJ?'jawa':''),mb=$('mus'),secs=document.querySelectorAll('.inv .s'),hero=$('hero');
+  var music=makeMusic(tp?tp.music:''),mb=$('mus'),secs=document.querySelectorAll('.inv .s'),hero=$('hero');
   function syncMus(){mb.classList.toggle('off',!music.isOn());mb.setAttribute('aria-label',music.isOn()?'Matikan musik':'Nyalakan musik')}
   mb.onclick=function(){music.toggle();syncMus()};
   $('ob').onclick=function(){
@@ -297,12 +380,10 @@ async function publicView(sb,slug){
     setTimeout(function(){hero.classList.add('in')},500);
     setTimeout(function(){document.body.classList.remove('locked');document.body.classList.add('done')},1600);
   };
-  // Animasi muncul saat di-scroll
   if('IntersectionObserver' in window){
     var io=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting&&e.target!==hero)e.target.classList.add('in')})},{threshold:.3});
     secs.forEach(function(x){io.observe(x)});
   }else{secs.forEach(function(x){x.classList.add('in')})}
-  // Hitung mundur
   if(f0&&$('c1')){
     var tg=new Date(ev[0].starts_at).getTime();
     var tick=function(){var t=Math.max(0,tg-Date.now());
@@ -310,13 +391,39 @@ async function publicView(sb,slug){
       $('c3').textContent=Math.floor(t%36e5/6e4);$('c4').textContent=Math.floor(t%6e4/1e3)};
     tick();setInterval(tick,1000);
   }
-  // Salin nomor rekening
   if($('cpn'))$('cpn').onclick=async function(){
     var n=$('accn').textContent;
     try{await navigator.clipboard.writeText(n);$('cpn').textContent='Tersalin'}catch(x){window.prompt('Salin nomor ini:',n)}
     setTimeout(function(){$('cpn').textContent='Salin nomor'},2000);
   };
-  publicExtras(sb,v,c);
+  if(demo){
+    document.querySelector('#extra .xt').innerHTML='<h2 class="h">Konfirmasi dan ucapan</h2><p class="p">Di undangan asli, tamu bisa konfirmasi hadir dan menulis ucapan di sini.</p><a class="pbtn" style="'+btn+';display:inline-block;text-decoration:none" href="?katalog=1">← Kembali ke katalog</a>';
+  }else{publicExtras(sb,v,c)}
+}
+
+async function publicView(sb,slug){
+  var r=await sb.from('invitations').select('*, events(*)').eq('slug',slug).maybeSingle();
+  if(r.error||!r.data){app.innerHTML='<h1>Undangan tidak ditemukan</h1><p>Linknya salah, atau undangan belum diaktifkan.</p>';return}
+  renderInvitation(sb,r.data,false);
+}
+
+function demoView(code){
+  var t0=Date.now()+30*864e5,iso=function(h){return new Date(t0+h*36e5).toISOString()};
+  renderInvitation(null,{groom_name:'Raka',bride_name:'Anindya',slug:'contoh',
+    groom_parents:'Putra dari Bapak Hendra dan Ibu Sari',bride_parents:'Putri dari Bapak Budi dan Ibu Rini',
+    quote:'Di antara tanda-tanda kebesaran-Nya, Dia menciptakan pasangan untukmu agar kamu merasa tenteram.',
+    theme_config:{palette:T[code]?code:'zamrud',story:'Kami bertemu di bangku kuliah dan tumbuh bersama sejak saat itu.',dresscode:'Warna senada',bank:'BCA',acc_no:'1234567890',acc_name:'Raka Pratama'},
+    events:[{name:'Akad nikah',starts_at:iso(0),venue_name:'Masjid Al-Hikmah',map_url:'',sort_order:0},{name:'Resepsi',starts_at:iso(3),venue_name:'Gedung Graha Asri',map_url:'',sort_order:1}]},true);
+}
+
+function catalogView(){
+  document.title='Katalog template';
+  var cards=TEMPLATES.map(function(t){
+    var p=T[t.code],tp=ETH[t.code];
+    var th=tp?'<div class="th" style="background:'+tp.v.herobg+'"><div class="ths">'+tp.scene()+'</div></div>'
+             :'<div class="th" style="background:linear-gradient(160deg,'+p.bg+','+p.bg2+')"><b style="color:'+p.acc+'">R &amp; A</b></div>';
+    return '<div class="tcard">'+th+'<div class="tb"><span class="bd" style="margin:0">'+esc(t.cat)+'</span><h2>'+esc(t.name)+'</h2><p>'+esc(t.desc)+'</p><a class="btn" href="?demo='+t.code+'" target="_blank">Lihat contoh</a></div></div>'}).join('');
+  app.innerHTML='<h1>Katalog template</h1><p class="msg">Pilih gaya undangan yang kamu suka, lihat contohnya, lalu buat undanganmu sendiri.</p><div class="tgrid">'+cards+'</div><div class="row"><a class="btn" href="./">Buat undangan</a></div>';
 }
 
 async function publicExtras(sb,v,c){
@@ -370,7 +477,7 @@ async function publicExtras(sb,v,c){
 
 /* ---------- Dashboard pemilik ---------- */
 function adminView(sb){
-  var user=null,inv=null,palette='zamrud',themeId=null;
+  var user=null,inv=null,palette='zamrud',themeId=null,themeMap={};
   function say(t){var m=$('msg');if(m)m.textContent=t}
 
   async function init(){
@@ -379,7 +486,7 @@ function adminView(sb){
   }
   function authForm(){
     app.innerHTML='<h1>Undangan digital</h1><p>Masuk atau daftar untuk membuat undanganmu.</p>'+
-    '<div class="panel"><label for="em">Email</label><input id="em" type="email" autocomplete="email">'+
+    '<p><a href="?katalog=1">Lihat katalog template</a></p><div class="panel"><label for="em">Email</label><input id="em" type="email" autocomplete="email">'+
     '<label for="pw">Kata sandi (min. 6 karakter)</label><input id="pw" type="password" autocomplete="current-password">'+
     '<div class="row"><button class="btn" id="in">Masuk</button><button class="btn o" id="up">Daftar</button></div><p class="msg" id="msg" role="status"></p></div>';
     $('in').onclick=async function(){var r=await sb.auth.signInWithPassword({email:$('em').value.trim(),password:$('pw').value});
@@ -389,7 +496,7 @@ function adminView(sb){
       else if(r.data.session){init()}else{say('Cek email untuk konfirmasi, lalu masuk.')}};
   }
   async function editor(){
-    var th=await sb.from('themes').select('id').eq('code','zamrud').single();themeId=th.data&&th.data.id;
+    var th=await sb.from('themes').select('id,code');(th.data||[]).forEach(function(x){themeMap[x.code]=x.id});themeId=themeMap.zamrud;
     var r=await sb.from('invitations').select('*, events(*)').eq('owner_id',user.id).order('created_at').limit(1).maybeSingle();
     inv=r.data;
     var ev=inv?(inv.events||[]).sort(function(a,b){return a.sort_order-b.sort_order}):[];
@@ -397,13 +504,12 @@ function adminView(sb){
     palette=(inv&&inv.theme_config&&inv.theme_config.palette)||'zamrud';
     var cf0=(inv&&inv.theme_config)||{};
     var g=function(o,k){return esc(o&&o[k]||'')};
-    app.innerHTML='<h1>Editor undangan</h1><p class="msg">Versi 3.3 · sampul wayang</p><p>Masuk sebagai '+esc(user.email)+' · <a href="#" id="out">Keluar</a></p><div class="panel">'+
+    app.innerHTML='<h1>Editor undangan</h1><p class="msg">Versi 4.0 · katalog template</p><p>Masuk sebagai '+esc(user.email)+' · <a href="#" id="out">Keluar</a></p><div class="panel">'+
     '<fieldset><legend>Mempelai</legend><div class="two"><div><label for="gn">Nama pria</label><input id="gn" value="'+g(inv,'groom_name')+'"></div><div><label for="bn">Nama wanita</label><input id="bn" value="'+g(inv,'bride_name')+'"></div></div>'+
     '<label for="gp">Orang tua pria</label><input id="gp" value="'+g(inv,'groom_parents')+'"><label for="bp">Orang tua wanita</label><input id="bp" value="'+g(inv,'bride_parents')+'"></fieldset>'+
     '<fieldset><legend>Akad</legend><div class="two"><div><label for="ad">Tanggal</label><input id="ad" type="date" value="'+ak.date+'"></div><div><label for="at">Jam (WIB)</label><input id="at" type="time" value="'+ak.jam+'"></div></div><label for="av">Lokasi</label><input id="av" value="'+g(ev[0],'venue_name')+'"></fieldset>'+
     '<fieldset><legend>Resepsi</legend><div class="two"><div><label for="rd">Tanggal</label><input id="rd" type="date" value="'+rs.date+'"></div><div><label for="rt">Jam (WIB)</label><input id="rt" type="time" value="'+rs.jam+'"></div></div><label for="rv">Lokasi</label><input id="rv" value="'+g(ev[1],'venue_name')+'"><label for="mp">Link Google Maps (opsional)</label><input id="mp" value="'+g(ev[1],'map_url')+'"></fieldset>'+
-    '<fieldset><legend>Tampilan</legend><label for="qt">Kutipan</label><textarea id="qt">'+g(inv,'quote')+'</textarea><label>Warna tema</label><div class="sw" id="sw">'+
-    Object.keys(T).map(function(k){return '<button type="button" data-t="'+k+'" style="background:'+T[k].bg+';color:'+T[k].ink+'" aria-pressed="'+(k===palette)+'">'+k+'</button>'}).join('')+'</div></fieldset>'+
+    '<fieldset><legend>Tampilan</legend><label for="qt">Kutipan</label><textarea id="qt">'+g(inv,'quote')+'</textarea><label>Pilih template</label><div class="tpl" id="sw">'+tplCards(palette)+'</div><p class="msg"><a id="pvl" target="_blank" rel="noopener" href="?demo='+palette+'">Lihat contoh template ini</a> · <a href="?katalog=1" target="_blank" rel="noopener">Semua template</a></p></fieldset>'+
     '<fieldset><legend>Tambahan (opsional)</legend><label for="st">Kisah singkat kalian</label><textarea id="st" style="min-height:110px">'+esc(cf0.story||'')+'</textarea>'+
     '<label for="dc">Dresscode</label><input id="dc" value="'+esc(cf0.dresscode||'')+'">'+
     '<label for="bk">Bank atau e-wallet (amplop digital)</label><input id="bk" value="'+esc(cf0.bank||'')+'">'+
@@ -415,7 +521,7 @@ function adminView(sb){
     showLink();guestsPanel();
     $('out').onclick=async function(e){e.preventDefault();await sb.auth.signOut();authForm()};
     $('sw').onclick=function(e){var b=e.target.closest('button');if(!b)return;palette=b.dataset.t;
-      document.querySelectorAll('#sw button').forEach(function(x){x.setAttribute('aria-pressed',x===b)})};
+      document.querySelectorAll('#sw button').forEach(function(x){x.setAttribute('aria-pressed',x===b)});$('pvl').href='?demo='+palette};
     $('sv').onclick=save;$('pb').onclick=toggle;
   }
   function showLink(){
@@ -432,7 +538,7 @@ function adminView(sb){
     var a=iso(v('ad'),v('at')),b=iso(v('rd'),v('rt'));
     if(!a){say('Isi tanggal dan jam akad.');return}
     say('Menyimpan...');
-    var row={owner_id:user.id,theme_id:themeId,slug:slug,groom_name:v('gn'),bride_name:v('bn'),groom_parents:v('gp'),bride_parents:v('bp'),quote:v('qt'),theme_config:{palette:palette,story:v('st'),dresscode:v('dc'),bank:v('bk'),acc_no:v('an'),acc_name:v('ah')}};
+    var row={owner_id:user.id,theme_id:(themeMap[palette]||themeId),slug:slug,groom_name:v('gn'),bride_name:v('bn'),groom_parents:v('gp'),bride_parents:v('bp'),quote:v('qt'),theme_config:{palette:palette,story:v('st'),dresscode:v('dc'),bank:v('bk'),acc_no:v('an'),acc_name:v('ah')}};
     var r=inv?await sb.from('invitations').update(row).eq('id',inv.id).select().single():await sb.from('invitations').insert(row).select().single();
     if(r.error){say(r.error.code==='23505'?'Slug sudah dipakai, coba yang lain.':'Gagal menyimpan: '+r.error.message);return}
     inv=r.data;
