@@ -4,10 +4,13 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>Undangan Digital</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,600;0,9..144,700;1,9..144,500&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.45.4/dist/umd/supabase.js"></script>
 <style>
-:root{--bg:#f6f4f8;--card:#fff;--ink:#1b1a33;--soft:#5d5b78;--line:#d9d5e6;--acc:#c2255c;--onacc:#fff}
-@media (prefers-color-scheme:dark){:root{--bg:#13122a;--card:#1c1b3a;--ink:#f1effa;--soft:#aeabcc;--line:#33315c;--acc:#ff7aa8;--onacc:#1b1a33}}
+:root{--bg:#f7f8fc;--card:#fff;--ink:#14213d;--soft:#5a6379;--line:#e2e6f0;--acc:#1b2a5c;--onacc:#fff;--gold:#b8862b;--tint:#eef1fa}
+@media (prefers-color-scheme:dark){:root{--bg:#0d1325;--card:#151d38;--ink:#eef0f8;--soft:#a3abc4;--line:#273253;--acc:#e0b866;--onacc:#1b1405;--gold:#e0b866;--tint:#1b2442}}
 *{box-sizing:border-box}
 body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.5 system-ui,-apple-system,sans-serif;padding:env(safe-area-inset-top) 0 env(safe-area-inset-bottom)}
 .w{max-width:560px;margin:0 auto;padding:20px 18px 60px}
@@ -27,6 +30,100 @@ textarea{min-height:70px}
 .sw button[aria-pressed="true"]{border-color:var(--acc);box-shadow:0 0 0 2px var(--acc)}
 button:focus-visible,input:focus-visible,textarea:focus-visible{outline:3px solid var(--acc);outline-offset:2px}
 .hide{display:none!important}
+/* ===== Desain baru: beranda, katalog, login, dashboard ===== */
+body:not(.inv){font-family:'Plus Jakarta Sans',system-ui,-apple-system,sans-serif}
+body:not(.inv) h1,body:not(.inv) h2,body:not(.inv) h3{font-family:Fraunces,Georgia,serif}
+input,textarea{border-radius:12px;padding:12px 14px}
+input:focus,textarea:focus{border-color:var(--acc)}
+a.btn{display:inline-block;text-align:center;text-decoration:none}
+.btn{border-radius:12px;font-family:inherit}
+.btn.big{padding:14px 26px;font-size:1rem}.btn.sm2{padding:9px 16px;font-size:.88rem;white-space:nowrap}
+.wfull{display:block;width:100%}
+.sm{font:600 .85rem 'Plus Jakarta Sans',system-ui;background:transparent;color:var(--ink);border:1px solid var(--line);border-radius:10px;padding:8px 14px;cursor:pointer;text-decoration:none;display:inline-block}
+.shi{max-width:1080px;margin:0 auto;padding:0 18px}
+.sh{position:sticky;top:0;z-index:40;background:color-mix(in srgb,var(--bg) 86%,transparent);backdrop-filter:blur(12px);border-bottom:1px solid var(--line);padding-top:env(safe-area-inset-top,0px)}
+.sh .shi{display:flex;align-items:center;justify-content:space-between;height:60px;gap:12px}
+.logo{display:flex;align-items:center;gap:8px;font:700 1.12rem Fraunces,Georgia,serif;color:var(--ink);text-decoration:none;white-space:nowrap}
+.lg{display:grid;place-items:center;width:28px;height:28px;border-radius:9px;background:var(--acc);color:var(--onacc);font-size:.8rem}
+.snav{display:none;gap:26px}.snav a{color:var(--soft);text-decoration:none;font-weight:500;font-size:.92rem}.snav a:hover{color:var(--ink)}
+.sact{display:flex;align-items:center;gap:8px}
+.lnk{color:var(--ink);font-weight:600;text-decoration:none;font-size:.92rem;padding:8px}
+.mail{display:none;color:var(--soft);font-size:.85rem}
+@media(min-width:760px){.snav{display:flex}}
+@media(min-width:600px){.mail{display:inline}}
+.hero{padding:40px 0 56px}
+.hg{display:grid;gap:30px;align-items:center}
+@media(min-width:860px){.hg{grid-template-columns:1.05fr .95fr}}
+.chip{display:inline-block;background:var(--tint);border:1px solid var(--line);border-radius:99px;padding:6px 14px;font-size:.82rem;font-weight:600}
+.hero h1{font-size:clamp(2.3rem,7vw,3.8rem);line-height:1.08;margin:16px 0 14px;letter-spacing:-.02em}
+.hero h1 em{font-style:italic;color:var(--gold)}
+.lead{color:var(--soft);font-size:1.06rem;max-width:520px;margin:0}
+.ticks{list-style:none;display:flex;flex-wrap:wrap;gap:8px 18px;padding:0;margin:22px 0 0;color:var(--soft);font-size:.9rem}
+.ticks li::before{content:"✓";color:var(--gold);font-weight:700;margin-right:6px}
+.phones{position:relative;height:420px}
+.phm{position:absolute;width:184px;aspect-ratio:9/18.5;border-radius:28px;border:6px solid #0f172a;overflow:hidden;box-shadow:0 24px 50px rgba(15,23,42,.28)}
+.phm.p1{left:calc(50% - 176px);top:34px;transform:rotate(-6deg)}
+.phm.p2{left:calc(50% - 8px);top:0;transform:rotate(5deg)}
+.phs{position:absolute;left:0;right:0;bottom:0}.phs svg{width:100%;display:block}
+.pht{position:absolute;top:15%;left:0;right:0;text-align:center}
+.pht small{display:block;font:700 .5rem sans-serif;letter-spacing:.16em;margin-bottom:8px}
+.pht b{font:italic 400 1.45rem/1.1 Georgia,serif}
+.sec{padding:60px 0}.sec.alt{background:var(--tint)}
+.eyebrow{color:var(--gold);font-weight:700;font-size:.78rem;letter-spacing:.14em;text-transform:uppercase;margin:0 0 8px}
+.sec h2{font-size:clamp(1.7rem,4.5vw,2.4rem);line-height:1.15;margin:0;letter-spacing:-.01em}
+.steps{display:grid;gap:14px;margin-top:28px}
+@media(min-width:760px){.steps{grid-template-columns:repeat(3,1fr)}}
+.stp{background:var(--card);border:1px solid var(--line);border-radius:18px;padding:22px}
+.stp span{display:grid;place-items:center;width:34px;height:34px;border-radius:50%;background:var(--acc);color:var(--onacc);font-weight:700;margin-bottom:12px}
+.stp h3{margin:0 0 6px;font-size:1.15rem}.stp p{margin:0;color:var(--soft);font-size:.94rem}
+.fg{display:grid;gap:14px;margin-top:28px;grid-template-columns:1fr}
+@media(min-width:620px){.fg{grid-template-columns:1fr 1fr}}
+@media(min-width:900px){.fg{grid-template-columns:repeat(3,1fr)}}
+.fc{background:var(--card);border:1px solid var(--line);border-radius:18px;padding:22px}
+.fi{display:grid;place-items:center;width:42px;height:42px;border-radius:12px;background:var(--tint);color:var(--gold);font-size:1.2rem;font-weight:700;margin-bottom:12px}
+.fc h3{margin:0 0 6px;font-size:1.1rem}.fc p{margin:0;color:var(--soft);font-size:.93rem}
+.scroller{display:flex;gap:14px;overflow-x:auto;scroll-snap-type:x mandatory;padding:6px 18px 18px;margin:22px -18px 0}
+.scroller .tcard{flex:0 0 210px;scroll-snap-align:start}
+.price{max-width:440px;margin:26px auto 0;background:var(--card);border:2px solid var(--gold);border-radius:22px;padding:28px}
+.price .pn{font:700 2.2rem Fraunces,Georgia,serif}
+.price ul{list-style:none;padding:0;margin:16px 0 22px;display:grid;gap:8px}
+.price li::before{content:"✓";color:var(--gold);font-weight:700;margin-right:8px}
+.faq details{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:16px 18px;margin-top:10px}
+.faq summary{cursor:pointer;font-weight:600;list-style:none}.faq summary::-webkit-details-marker{display:none}
+.faq p{color:var(--soft);margin:10px 0 0;font-size:.94rem}
+.ctab{background:var(--acc);color:var(--onacc);border-radius:26px;padding:46px 24px;text-align:center}
+.ctab h2{color:var(--onacc)}.ctab p{opacity:.85;margin:12px auto 22px;max-width:460px}
+.ctab .btn{background:var(--onacc);color:var(--acc);border-color:var(--onacc)}
+.sf{border-top:1px solid var(--line);padding:28px 0;color:var(--soft);font-size:.9rem}
+.sf .shi{display:flex;flex-wrap:wrap;justify-content:space-between;gap:12px}
+.sf a{color:var(--soft);text-decoration:none;margin-left:16px}
+.tgrid{display:grid;grid-template-columns:repeat(2,1fr);gap:14px;margin:24px 0}
+@media(min-width:900px){.tgrid{grid-template-columns:repeat(3,1fr)}}
+.authw{min-height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:24px 18px;gap:18px}
+.authc{width:100%;max-width:400px;background:var(--card);border:1px solid var(--line);border-radius:22px;padding:26px;box-shadow:0 18px 40px rgba(20,33,61,.08)}
+.authc h1{font-size:1.5rem;margin:0 0 4px}.authc p.sub{color:var(--soft);margin:0 0 14px;font-size:.92rem}
+.seg,.seg3{display:grid;background:var(--tint);border-radius:12px;padding:4px;gap:4px}
+.seg{grid-template-columns:1fr 1fr;margin-bottom:18px}.seg3{grid-template-columns:repeat(3,1fr);margin:14px 0}
+.seg button,.seg3 button{border:0;background:transparent;color:var(--soft);font:600 .92rem 'Plus Jakarta Sans',system-ui;padding:10px;border-radius:9px;cursor:pointer}
+.seg button[aria-pressed="true"],.seg3 button[aria-pressed="true"]{background:var(--card);color:var(--ink);box-shadow:0 1px 4px rgba(0,0,0,.14)}
+.authw p.msg a,.msg a{color:var(--soft)}
+.dw{max-width:620px;margin:0 auto;padding:16px 16px 120px}
+.lcard{background:var(--card);border:1px solid var(--line);border-left:4px solid var(--gold);border-radius:16px;padding:16px 18px}
+.lstat{font-size:.92rem;color:var(--soft)}
+.lcard .link{margin:8px 0 2px;color:var(--ink)}
+.bd.on{background:rgba(34,160,90,.14);color:#1f9d5a;border-color:rgba(34,160,90,.4);margin-left:0;margin-right:6px}
+.bd.off{margin-left:0;margin-right:6px}
+.acc{background:var(--card);border:1px solid var(--line);border-radius:16px;margin-bottom:12px;overflow:hidden}
+.acc summary{display:flex;align-items:center;justify-content:space-between;gap:10px;padding:16px 18px;cursor:pointer;list-style:none}
+.acc summary::-webkit-details-marker{display:none}
+.acc summary b{font-size:1rem}.acc summary small{color:var(--soft);display:block;font-size:.8rem;font-weight:400}
+.acc summary::after{content:"⌄";color:var(--soft);font-size:1.2rem;transition:transform .2s}
+.acc[open] summary::after{transform:rotate(180deg)}
+.accb{padding:0 18px 18px}
+.savebar{position:fixed;left:0;right:0;bottom:0;z-index:30;display:flex;align-items:center;gap:10px;flex-wrap:wrap;padding:10px 16px calc(10px + env(safe-area-inset-bottom,0px));background:color-mix(in srgb,var(--card) 94%,transparent);backdrop-filter:blur(12px);border-top:1px solid var(--line)}
+.savebar .btn{padding:11px 20px}.savebar .msg{margin:0;min-height:0;flex:1;min-width:120px;font-size:.82rem}
+.vtag{text-align:center;font-size:.75rem;margin-top:18px}
+
 .tpl{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-top:6px}
 .tc{display:flex;flex-direction:column;align-items:center;gap:4px;padding:8px 4px;border-radius:12px;border:2px solid var(--line);background:var(--card);color:var(--ink);cursor:pointer;font:inherit}
 .tc[aria-pressed="true"]{border-color:var(--acc);box-shadow:0 0 0 2px var(--acc)}
@@ -156,6 +253,7 @@ body.open.covimg .cover .cvimg{transform:scale(1.35)}
 var SUPABASE_URL='https://zqmdimzvcdmjeadkfpcy.supabase.co';
 var SUPABASE_ANON_KEY='sb_publishable_nSUkwTNDq4LCvTANEZpGjA_O66CNBwr';
 // =================================================================
+var BRAND='Kirana Studio',WA='6281234567890'; // ganti nama dan nomor WhatsApp
 var T={zamrud:{bg:'#0f2421',ink:'#f1e6cf',acc:'#d3ae62',bg2:'#163330'},
        blush:{bg:'#f2d7d5',ink:'#4a1f2e',acc:'#9c3b57',bg2:'#ecc4c1'},
        langit:{bg:'#dfe8f5',ink:'#1f2f5c',acc:'#3b5fb0',bg2:'#cddcef'},
@@ -416,15 +514,70 @@ function demoView(code){
     events:[{name:'Akad nikah',starts_at:iso(0),venue_name:'Masjid Al-Hikmah',map_url:'',sort_order:0},{name:'Resepsi',starts_at:iso(3),venue_name:'Gedung Graha Asri',map_url:'',sort_order:1}]},true);
 }
 
-function catalogView(){
-  document.title='Katalog template';
-  var cards=TEMPLATES.map(function(t){
-    var p=T[t.code],tp=ETH[t.code];
-    var th=tp?'<div class="th" style="background:'+tp.v.herobg+'"><div class="ths">'+tp.scene()+'</div></div>'
-             :'<div class="th" style="background:linear-gradient(160deg,'+p.bg+','+p.bg2+')"><b style="color:'+p.acc+'">R &amp; A</b></div>';
-    return '<div class="tcard">'+th+'<div class="tb"><span class="bd" style="margin:0">'+esc(t.cat)+'</span><h2>'+esc(t.name)+'</h2><p>'+esc(t.desc)+'</p><a class="btn" href="?demo='+t.code+'" target="_blank">Lihat contoh</a></div></div>'}).join('');
-  app.innerHTML='<h1>Katalog template</h1><p class="msg">Pilih gaya undangan yang kamu suka, lihat contohnya, lalu buat undanganmu sendiri.</p><div class="tgrid">'+cards+'</div><div class="row"><a class="btn" href="./">Buat undangan</a></div>';
+function siteHeader(){
+  return '<header class="sh"><div class="shi"><a class="logo" href="./"><span class="lg">✦</span>'+esc(BRAND)+'</a>'+
+   '<nav class="snav"><a href="./#fitur">Fitur</a><a href="?katalog=1">Template</a><a href="./#cara">Cara kerja</a><a href="./#faq">FAQ</a></nav>'+
+   '<div class="sact"><a class="lnk" href="?masuk=1">Masuk</a><a class="btn sm2" href="?daftar=1">Daftar gratis</a></div></div></header>';
 }
+function siteFooter(){
+  return '<footer class="sf"><div class="shi"><span>© '+new Date().getFullYear()+' '+esc(BRAND)+'. Undangan digital.</span><span><a href="./#fitur">Fitur</a><a href="?katalog=1">Template</a><a href="https://wa.me/'+WA+'" target="_blank" rel="noopener">Hubungi kami</a></span></div></footer>';
+}
+function phoneMock(code,cls){
+  var tp=ETH[code],p=T[code];
+  return '<div class="phm '+cls+'" aria-hidden="true" style="background:'+(tp?tp.v.herobg:'linear-gradient(160deg,'+p.bg+','+p.bg2+')')+'"><div class="phs">'+(tp?tp.scene():'')+'</div><div class="pht" style="color:'+p.ink+'"><small style="color:'+p.acc+'">'+(tp?esc(tp.kick):'PERNIKAHAN')+'</small><b>Raka<br>&amp;<br>Anindya</b></div></div>';
+}
+function tcardHtml(t){
+  var p=T[t.code],tp=ETH[t.code];
+  var th=tp?'<div class="th" style="background:'+tp.v.herobg+'"><div class="ths">'+tp.scene()+'</div></div>'
+           :'<div class="th" style="background:linear-gradient(160deg,'+p.bg+','+p.bg2+')"><b style="color:'+p.acc+'">R &amp; A</b></div>';
+  return '<div class="tcard">'+th+'<div class="tb"><span class="bd" style="margin:0;align-self:flex-start">'+esc(t.cat)+'</span><h2>'+esc(t.name)+'</h2><p>'+esc(t.desc)+'</p><a class="btn o" href="?demo='+t.code+'" target="_blank" rel="noopener">Lihat contoh</a></div></div>';
+}
+function pageShell(){app.className='';app.style.cssText='padding:0;max-width:none'}
+
+function landingView(){
+  document.title=BRAND+' · Undangan digital';
+  pageShell();document.documentElement.style.scrollPaddingTop='72px';
+  var fit=[['↗','Link per nama tamu','Ganti nama di ujung link, dan tamu langsung disapa dengan namanya. Tanpa perlu mendaftarkan satu per satu.'],
+    ['✓','RSVP online','Tamu konfirmasi hadir dan jumlah orang. Kamu memantaunya dari dashboard.'],
+    ['✎','Ucapan dan doa','Ucapan tamu tampil di undangan, dan kamu bisa menyembunyikan yang tidak pantas.'],
+    ['♪','Musik dan animasi','Sampul pembuka, musik latar, dan hitung mundur menuju hari bahagia.'],
+    ['⌖','Peta dan amplop digital','Tautan Google Maps serta nomor rekening dengan tombol salin.'],
+    ['✦','Template adat','Adat Jawa dan Bugis lengkap dengan ornamen dan musik khasnya. Adat lain menyusul.']];
+  var faq=[['Apakah tamu perlu memasang aplikasi?','Tidak. Undangan berupa halaman web yang dibuka dari link, di HP maupun komputer.'],
+    ['Bagaimana cara mengirim ke banyak tamu?','Ketik nama tamu di dashboard, lalu salin linknya atau kirim lewat WhatsApp. Setiap tamu disapa dengan namanya.'],
+    ['Bisakah data diubah setelah undangan aktif?','Bisa. Ubah datanya di dashboard lalu simpan. Link yang sama langsung menampilkan versi terbaru.'],
+    ['Apakah musik berbunyi otomatis?','Musik mulai saat tamu menekan Buka undangan, dan bisa dimatikan lewat tombol ♪.']];
+  app.innerHTML=siteHeader()+
+  '<main>'+
+  '<section class="hero"><div class="shi hg"><div><span class="chip">✦ Undangan digital · jadi dalam 5 menit</span>'+
+   '<h1>Undangan pernikahan online yang <em>bercerita</em></h1>'+
+   '<p class="lead">Pilih template, isi data, lalu bagikan lewat WhatsApp. Tersedia template adat Jawa dan Bugis lengkap dengan musik dan animasi pembuka.</p>'+
+   '<div class="row" style="margin-top:24px"><a class="btn big" href="?daftar=1">Mulai gratis</a><a class="btn o big" href="?katalog=1">Lihat template</a></div>'+
+   '<ul class="ticks"><li>Link per nama tamu</li><li>RSVP dan ucapan</li><li>Musik dan hitung mundur</li></ul></div>'+
+   '<div class="phones">'+phoneMock('bugis','p1')+phoneMock('jawa','p2')+'</div></div></section>'+
+  '<section id="cara" class="sec alt"><div class="shi"><p class="eyebrow">Cara kerja</p><h2>Tiga langkah, selesai</h2><div class="steps">'+
+   '<div class="stp"><span>1</span><h3>Pilih template</h3><p>Lihat contoh lengkap dengan animasi dan musiknya, lalu pilih yang paling cocok.</p></div>'+
+   '<div class="stp"><span>2</span><h3>Isi datanya</h3><p>Nama, acara, lokasi, dan cerita kalian. Cukup dari HP, tanpa perlu keahlian desain.</p></div>'+
+   '<div class="stp"><span>3</span><h3>Bagikan ke tamu</h3><p>Salin link atau kirim lewat WhatsApp. Setiap tamu mendapat sapaan dengan namanya.</p></div></div></div></section>'+
+  '<section id="fitur" class="sec"><div class="shi"><p class="eyebrow">Fitur</p><h2>Semua yang undanganmu butuhkan</h2><div class="fg">'+
+   fit.map(function(f){return '<div class="fc"><div class="fi">'+f[0]+'</div><h3>'+f[1]+'</h3><p>'+f[2]+'</p></div>'}).join('')+'</div></div></section>'+
+  '<section class="sec alt"><div class="shi"><p class="eyebrow">Template</p><h2>Pilih gaya yang kamu suka</h2><p class="lead" style="margin-top:10px">Geser untuk melihat. Ketuk untuk membuka contoh lengkapnya.</p>'+
+   '<div class="scroller">'+TEMPLATES.map(tcardHtml).join('')+'</div><a class="btn big" href="?katalog=1">Lihat semua template</a></div></section>'+
+  '<section id="harga" class="sec"><div class="shi" style="text-align:center"><p class="eyebrow">Harga</p><h2>Gratis selama masa uji coba</h2>'+
+   '<div class="price"><div class="pn">Rp 0</div><p style="color:var(--soft);margin:4px 0 0">selama masa uji coba</p><ul style="text-align:left"><li>Semua template tersedia</li><li>Tamu tanpa batas</li><li>RSVP dan ucapan</li><li>Musik, hitung mundur, dan peta</li></ul><a class="btn big wfull" href="?daftar=1">Daftar gratis</a></div>'+
+   '<p style="color:var(--soft);font-size:.88rem;margin-top:14px">Informasi paket berbayar akan diumumkan di sini.</p></div></section>'+
+  '<section id="faq" class="sec alt"><div class="shi faq" style="max-width:720px"><p class="eyebrow">FAQ</p><h2>Pertanyaan yang sering muncul</h2>'+
+   faq.map(function(q){return '<details><summary>'+q[0]+'</summary><p>'+q[1]+'</p></details>'}).join('')+'</div></section>'+
+  '<section class="sec"><div class="shi"><div class="ctab"><h2>Buat undangan digitalmu hari ini</h2><p>Mulai gratis, selesai dalam hitungan menit.</p><a class="btn big" href="?daftar=1">Mulai sekarang</a></div></div></section>'+
+  '</main>'+siteFooter();
+}
+
+function catalogView(){
+  document.title='Template · '+BRAND;
+  pageShell();
+  app.innerHTML=siteHeader()+'<main class="shi" style="padding-top:34px;padding-bottom:50px"><p class="eyebrow">Katalog</p><h2 style="font-size:2rem;margin:0">Pilih template undanganmu</h2><p class="lead" style="margin-top:10px">Lihat contoh lengkap dengan animasi dan musiknya, lalu pilih yang paling cocok.</p><div class="tgrid">'+TEMPLATES.map(tcardHtml).join('')+'</div><a class="btn big" href="?daftar=1">Mulai buat undangan</a></main>'+siteFooter();
+}
+
 
 async function publicExtras(sb,v,c){
   var code=new URLSearchParams(location.search).get('to'),guest=null;
@@ -482,18 +635,46 @@ function adminView(sb){
 
   async function init(){
     var s=await sb.auth.getSession();user=s.data.session?s.data.session.user:null;
-    user?await editor():authForm();
+    if(user){await editor();return}
+    var q=new URLSearchParams(location.search);
+    if(q.get('masuk'))authForm('masuk');else if(q.get('daftar'))authForm('daftar');else landingView();
   }
-  function authForm(){
-    app.innerHTML='<h1>Undangan digital</h1><p>Masuk atau daftar untuk membuat undanganmu.</p>'+
-    '<p><a href="?katalog=1">Lihat katalog template</a></p><div class="panel"><label for="em">Email</label><input id="em" type="email" autocomplete="email">'+
-    '<label for="pw">Kata sandi (min. 6 karakter)</label><input id="pw" type="password" autocomplete="current-password">'+
-    '<div class="row"><button class="btn" id="in">Masuk</button><button class="btn o" id="up">Daftar</button></div><p class="msg" id="msg" role="status"></p></div>';
-    $('in').onclick=async function(){var r=await sb.auth.signInWithPassword({email:$('em').value.trim(),password:$('pw').value});
-      r.error?say('Gagal masuk: '+r.error.message):init()};
-    $('up').onclick=async function(){var r=await sb.auth.signUp({email:$('em').value.trim(),password:$('pw').value});
-      if(r.error){say('Gagal daftar: '+r.error.message)}
-      else if(r.data.session){init()}else{say('Cek email untuk konfirmasi, lalu masuk.')}};
+  function authForm(mode){
+    mode=mode||'masuk';pageShell();
+    app.innerHTML='<div class="authw"><a class="logo" href="./"><span class="lg">✦</span>'+esc(BRAND)+'</a><div class="authc">'+
+      '<div class="seg" id="seg"><button type="button" data-m="masuk">Masuk</button><button type="button" data-m="daftar">Daftar</button></div>'+
+      '<h1 id="ah1"></h1><p class="sub" id="asub"></p>'+
+      '<label for="em">Email</label><input id="em" type="email" autocomplete="email" inputmode="email">'+
+      '<label for="pw">Kata sandi (min. 6 karakter)</label><input id="pw" type="password" autocomplete="current-password">'+
+      '<div style="margin-top:18px"><button class="btn big wfull" id="go"></button></div><p class="msg" id="msg" role="status"></p></div>'+
+      '<p class="msg"><a href="./">← Beranda</a> · <a href="?katalog=1">Lihat template</a></p></div>';
+    function paint(){
+      document.querySelectorAll('#seg button').forEach(function(b){b.setAttribute('aria-pressed',b.dataset.m===mode)});
+      $('ah1').textContent=mode==='masuk'?'Selamat datang kembali':'Buat akun gratis';
+      $('asub').textContent=mode==='masuk'?'Masuk untuk mengelola undanganmu.':'Cukup email dan kata sandi.';
+      $('go').textContent=mode==='masuk'?'Masuk':'Daftar';
+      $('pw').autocomplete=mode==='masuk'?'current-password':'new-password';
+    }
+    paint();
+    $('seg').onclick=function(e){var b=e.target.closest('button');if(!b)return;mode=b.dataset.m;paint();say('')};
+    $('go').onclick=async function(){
+      var em=$('em').value.trim(),pw=$('pw').value;
+      if(!em||!pw){say('Isi email dan kata sandi.');return}
+      say('Memproses...');
+      if(mode==='masuk'){
+        var r=await sb.auth.signInWithPassword({email:em,password:pw});
+        if(r.error){say('Gagal masuk: '+r.error.message);return}
+        history.replaceState(null,'',location.pathname);init();
+      }else{
+        var r2=await sb.auth.signUp({email:em,password:pw});
+        if(r2.error){say('Gagal daftar: '+r2.error.message)}
+        else if(r2.data.session){history.replaceState(null,'',location.pathname);init()}
+        else{say('Cek email untuk konfirmasi, lalu masuk.')}
+      }
+    };
+  }
+  function acc(title,hint,open,body){
+    return '<details class="acc"'+(open?' open':'')+'><summary><span><b>'+title+'</b><small>'+hint+'</small></span></summary><div class="accb">'+body+'</div></details>';
   }
   async function editor(){
     var th=await sb.from('themes').select('id,code');(th.data||[]).forEach(function(x){themeMap[x.code]=x.id});themeId=themeMap.zamrud;
@@ -504,30 +685,52 @@ function adminView(sb){
     palette=(inv&&inv.theme_config&&inv.theme_config.palette)||'zamrud';
     var cf0=(inv&&inv.theme_config)||{};
     var g=function(o,k){return esc(o&&o[k]||'')};
-    app.innerHTML='<h1>Editor undangan</h1><p class="msg">Versi 4.0 · katalog template</p><p>Masuk sebagai '+esc(user.email)+' · <a href="#" id="out">Keluar</a></p><div class="panel">'+
-    '<fieldset><legend>Mempelai</legend><div class="two"><div><label for="gn">Nama pria</label><input id="gn" value="'+g(inv,'groom_name')+'"></div><div><label for="bn">Nama wanita</label><input id="bn" value="'+g(inv,'bride_name')+'"></div></div>'+
-    '<label for="gp">Orang tua pria</label><input id="gp" value="'+g(inv,'groom_parents')+'"><label for="bp">Orang tua wanita</label><input id="bp" value="'+g(inv,'bride_parents')+'"></fieldset>'+
-    '<fieldset><legend>Akad</legend><div class="two"><div><label for="ad">Tanggal</label><input id="ad" type="date" value="'+ak.date+'"></div><div><label for="at">Jam (WIB)</label><input id="at" type="time" value="'+ak.jam+'"></div></div><label for="av">Lokasi</label><input id="av" value="'+g(ev[0],'venue_name')+'"></fieldset>'+
-    '<fieldset><legend>Resepsi</legend><div class="two"><div><label for="rd">Tanggal</label><input id="rd" type="date" value="'+rs.date+'"></div><div><label for="rt">Jam (WIB)</label><input id="rt" type="time" value="'+rs.jam+'"></div></div><label for="rv">Lokasi</label><input id="rv" value="'+g(ev[1],'venue_name')+'"><label for="mp">Link Google Maps (opsional)</label><input id="mp" value="'+g(ev[1],'map_url')+'"></fieldset>'+
-    '<fieldset><legend>Tampilan</legend><label for="qt">Kutipan</label><textarea id="qt">'+g(inv,'quote')+'</textarea><label>Pilih template</label><div class="tpl" id="sw">'+tplCards(palette)+'</div><p class="msg"><a id="pvl" target="_blank" rel="noopener" href="?demo='+palette+'">Lihat contoh template ini</a> · <a href="?katalog=1" target="_blank" rel="noopener">Semua template</a></p></fieldset>'+
-    '<fieldset><legend>Tambahan (opsional)</legend><label for="st">Kisah singkat kalian</label><textarea id="st" style="min-height:110px">'+esc(cf0.story||'')+'</textarea>'+
-    '<label for="dc">Dresscode</label><input id="dc" value="'+esc(cf0.dresscode||'')+'">'+
-    '<label for="bk">Bank atau e-wallet (amplop digital)</label><input id="bk" value="'+esc(cf0.bank||'')+'">'+
-    '<div class="two"><div><label for="an">Nomor rekening</label><input id="an" inputmode="numeric" value="'+esc(cf0.acc_no||'')+'"></div><div><label for="ah">Atas nama</label><input id="ah" value="'+esc(cf0.acc_name||'')+'"></div></div></fieldset>'+
-    '<fieldset><legend>Alamat undangan</legend><label for="sl">Slug</label><input id="sl" value="'+g(inv,'slug')+'" autocapitalize="none"></fieldset>'+
-    '<div class="row"><button class="btn" id="sv">Simpan</button><button class="btn o" id="pb">'+(inv&&inv.status==='active'?'Nonaktifkan':'Aktifkan undangan')+'</button></div>'+
-    '<p class="msg" id="msg" role="status"></p><p class="link" id="lk"></p></div>'+
-    '<div class="panel" id="guestPanel"></div><div class="panel" id="wishPanel"></div>';
+    pageShell();
+    app.innerHTML=
+    '<header class="sh"><div class="shi"><a class="logo" href="./"><span class="lg">✦</span>'+esc(BRAND)+'</a><div class="sact"><span class="mail">'+esc(user.email)+'</span><button class="sm" id="out">Keluar</button></div></div></header>'+
+    '<main class="dw">'+
+    '<div class="lcard"><div class="lstat" id="lstat"></div><p class="link" id="lk"></p><div class="row" id="lact"></div></div>'+
+    '<div class="seg3" id="tabs"><button type="button" data-tab="edit" aria-pressed="true">Undangan</button><button type="button" data-tab="guest" aria-pressed="false">Tamu</button><button type="button" data-tab="wish" aria-pressed="false">Ucapan</button></div>'+
+    '<section id="tab-edit">'+
+    acc('Mempelai','Nama dan orang tua',true,
+      '<div class="two"><div><label for="gn">Nama pria</label><input id="gn" value="'+g(inv,'groom_name')+'"></div><div><label for="bn">Nama wanita</label><input id="bn" value="'+g(inv,'bride_name')+'"></div></div>'+
+      '<label for="gp">Orang tua pria</label><input id="gp" value="'+g(inv,'groom_parents')+'"><label for="bp">Orang tua wanita</label><input id="bp" value="'+g(inv,'bride_parents')+'">')+
+    acc('Acara','Akad, resepsi, dan lokasi',true,
+      '<b style="font-size:.9rem">Akad</b><div class="two"><div><label for="ad">Tanggal</label><input id="ad" type="date" value="'+ak.date+'"></div><div><label for="at">Jam (WIB)</label><input id="at" type="time" value="'+ak.jam+'"></div></div><label for="av">Lokasi akad</label><input id="av" value="'+g(ev[0],'venue_name')+'">'+
+      '<b style="font-size:.9rem;display:block;margin-top:18px">Resepsi</b><div class="two"><div><label for="rd">Tanggal</label><input id="rd" type="date" value="'+rs.date+'"></div><div><label for="rt">Jam (WIB)</label><input id="rt" type="time" value="'+rs.jam+'"></div></div><label for="rv">Lokasi resepsi</label><input id="rv" value="'+g(ev[1],'venue_name')+'"><label for="mp">Link Google Maps (opsional)</label><input id="mp" value="'+g(ev[1],'map_url')+'">')+
+    acc('Template dan tampilan','Pilih gaya undangan',true,
+      '<label>Pilih template</label><div class="tpl" id="sw">'+tplCards(palette)+'</div><p class="msg"><a id="pvl" target="_blank" rel="noopener" href="?demo='+palette+'">Lihat contoh template ini</a> · <a href="?katalog=1" target="_blank" rel="noopener">Semua template</a></p>'+
+      '<label for="qt">Kutipan</label><textarea id="qt">'+g(inv,'quote')+'</textarea>')+
+    acc('Tambahan','Kisah, dresscode, dan amplop digital (opsional)',false,
+      '<label for="st">Kisah singkat kalian</label><textarea id="st" style="min-height:110px">'+esc(cf0.story||'')+'</textarea>'+
+      '<label for="dc">Dresscode</label><input id="dc" value="'+esc(cf0.dresscode||'')+'">'+
+      '<label for="bk">Bank atau e-wallet</label><input id="bk" value="'+esc(cf0.bank||'')+'">'+
+      '<div class="two"><div><label for="an">Nomor rekening</label><input id="an" inputmode="numeric" value="'+esc(cf0.acc_no||'')+'"></div><div><label for="ah">Atas nama</label><input id="ah" value="'+esc(cf0.acc_name||'')+'"></div></div>')+
+    acc('Alamat undangan','Bagian akhir link undanganmu',false,
+      '<label for="sl">Slug</label><input id="sl" value="'+g(inv,'slug')+'" autocapitalize="none" spellcheck="false"><p class="msg">Huruf kecil, angka, dan tanda hubung. Contoh: raka-anindya</p>')+
+    '</section>'+
+    '<section id="tab-guest" class="hide"><div class="panel" id="guestPanel"></div></section>'+
+    '<section id="tab-wish" class="hide"><div class="panel" id="wishPanel"></div></section>'+
+    '<p class="msg vtag">Versi 5.0</p></main>'+
+    '<div class="savebar" id="savebar"><button class="btn" id="sv">Simpan</button><button class="btn o" id="pb">'+(inv&&inv.status==='active'?'Nonaktifkan':'Aktifkan undangan')+'</button><span class="msg" id="msg" role="status"></span></div>';
     showLink();guestsPanel();
-    $('out').onclick=async function(e){e.preventDefault();await sb.auth.signOut();authForm()};
+    $('out').onclick=async function(){await sb.auth.signOut();history.replaceState(null,'',location.pathname);landingView()};
     $('sw').onclick=function(e){var b=e.target.closest('button');if(!b)return;palette=b.dataset.t;
       document.querySelectorAll('#sw button').forEach(function(x){x.setAttribute('aria-pressed',x===b)});$('pvl').href='?demo='+palette};
+    $('tabs').onclick=function(e){var b=e.target.closest('button');if(!b)return;
+      ['edit','guest','wish'].forEach(function(t){$('tab-'+t).classList.toggle('hide',t!==b.dataset.tab)});
+      document.querySelectorAll('#tabs button').forEach(function(x){x.setAttribute('aria-pressed',x===b)});
+      $('savebar').classList.toggle('hide',b.dataset.tab!=='edit');window.scrollTo(0,0)};
     $('sv').onclick=save;$('pb').onclick=toggle;
   }
   function showLink(){
-    var l=$('lk');if(!inv){l.textContent='';return}
-    var u=location.origin+location.pathname+'?u='+inv.slug;
-    l.innerHTML=(inv.status==='active'?'Link undangan: ':'Draf (belum aktif). Link nanti: ')+'<a href="'+esc(u)+'" target="_blank" rel="noopener">'+esc(u)+'</a>';
+    var st=$('lstat'),l=$('lk'),a=$('lact');if(!st)return;
+    if(!inv){st.innerHTML='<span class="bd off">Belum dibuat</span>Isi data di bawah, lalu ketuk Simpan.';l.textContent='';a.innerHTML='';return}
+    var u=location.origin+location.pathname+'?u='+inv.slug,on=inv.status==='active';
+    st.innerHTML='<span class="bd '+(on?'on':'off')+'">'+(on?'Aktif':'Draf')+'</span>'+(on?'Undanganmu sudah bisa dibuka tamu.':'Belum aktif. Ketuk Aktifkan setelah datanya lengkap.');
+    l.textContent=u;
+    a.innerHTML='<button class="sm" id="lcp" type="button">Salin link</button><a class="sm" target="_blank" rel="noopener" href="'+esc(u)+'">Buka</a><a class="sm" target="_blank" rel="noopener" href="https://wa.me/?text='+encodeURIComponent('Undangan pernikahan '+inv.groom_name+' & '+inv.bride_name+': '+u)+'">Bagikan WA</a>';
+    $('lcp').onclick=async function(){try{await navigator.clipboard.writeText(u);$('lcp').textContent='Tersalin'}catch(x){window.prompt('Salin link ini:',u)}};
   }
   function iso(d,t){return d&&t?d+'T'+t+':00+07:00':null}
   async function save(){
@@ -563,7 +766,7 @@ function adminView(sb){
 
   async function guestsPanel(){
     var gp=$('guestPanel'),wp=$('wishPanel');if(!gp)return;
-    if(!inv){gp.innerHTML='';wp.innerHTML='';return}
+    if(!inv){gp.innerHTML='<p class="msg">Simpan undangan di tab Undangan dulu. Setelah itu kamu bisa membuat link tamu di sini.</p>';wp.innerHTML='<p class="msg">Ucapan dari tamu akan tampil di sini.</p>';return}
     gp.innerHTML='<h1 style="font-size:1.3rem">Link per nama tamu</h1><p class="msg">Tidak perlu mendaftarkan tamu dulu. Ketik nama, lalu salin atau kirim linknya. Nama otomatis tampil di undangan.</p>'+
       '<label for="qn">Nama tamu</label><input id="qn" placeholder="Budi Santoso" maxlength="80">'+
       '<div class="row"><button class="btn" id="qc">Salin link</button><button class="btn o" id="qw">Kirim lewat WA</button></div>'+
