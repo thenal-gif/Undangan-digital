@@ -183,7 +183,7 @@ function adminView(sb){
     var ak=ev[0]?wib(ev[0].starts_at):{date:'',jam:''},rs=ev[1]?wib(ev[1].starts_at):{date:'',jam:''};
     palette=(inv&&inv.theme_config&&inv.theme_config.palette)||'zamrud';
     var g=function(o,k){return esc(o&&o[k]||'')};
-    app.innerHTML='<h1>Editor undangan</h1><p class="msg">Versi 2.1 · link per nama tamu aktif</p><p>Masuk sebagai '+esc(user.email)+' · <a href="#" id="out">Keluar</a></p><div class="panel">'+
+    app.innerHTML='<h1>Editor undangan</h1><p class="msg">Versi 2.2 · link per nama tamu aktif</p><p>Masuk sebagai '+esc(user.email)+' · <a href="#" id="out">Keluar</a></p><div class="panel">'+
     '<fieldset><legend>Mempelai</legend><div class="two"><div><label for="gn">Nama pria</label><input id="gn" value="'+g(inv,'groom_name')+'"></div><div><label for="bn">Nama wanita</label><input id="bn" value="'+g(inv,'bride_name')+'"></div></div>'+
     '<label for="gp">Orang tua pria</label><input id="gp" value="'+g(inv,'groom_parents')+'"><label for="bp">Orang tua wanita</label><input id="bp" value="'+g(inv,'bride_parents')+'"></fieldset>'+
     '<fieldset><legend>Akad</legend><div class="two"><div><label for="ad">Tanggal</label><input id="ad" type="date" value="'+ak.date+'"></div><div><label for="at">Jam (WIB)</label><input id="at" type="time" value="'+ak.jam+'"></div></div><label for="av">Lokasi</label><input id="av" value="'+g(ev[0],'venue_name')+'"></fieldset>'+
@@ -193,7 +193,7 @@ function adminView(sb){
     '<fieldset><legend>Alamat undangan</legend><label for="sl">Slug</label><input id="sl" value="'+g(inv,'slug')+'" autocapitalize="none"></fieldset>'+
     '<div class="row"><button class="btn" id="sv">Simpan</button><button class="btn o" id="pb">'+(inv&&inv.status==='active'?'Nonaktifkan':'Aktifkan undangan')+'</button></div>'+
     '<p class="msg" id="msg" role="status"></p><p class="link" id="lk"></p></div>'+
-    '<div class="panel" id="gp"></div><div class="panel" id="wp"></div>';
+    '<div class="panel" id="guestPanel"></div><div class="panel" id="wishPanel"></div>';
     showLink();guestsPanel();
     $('out').onclick=async function(e){e.preventDefault();await sb.auth.signOut();authForm()};
     $('sw').onclick=function(e){var b=e.target.closest('button');if(!b)return;palette=b.dataset.t;
@@ -238,7 +238,7 @@ function adminView(sb){
   function waText(g){return 'Assalamualaikum, '+g.name+'. Kami mengundang Anda ke pernikahan '+inv.groom_name+' & '+inv.bride_name+'. Buka undangan di sini: '+guestLink(g)}
 
   async function guestsPanel(){
-    var gp=$('gp'),wp=$('wp');if(!gp)return;
+    var gp=$('guestPanel'),wp=$('wishPanel');if(!gp)return;
     if(!inv){gp.innerHTML='';wp.innerHTML='';return}
     gp.innerHTML='<h1 style="font-size:1.3rem">Link per nama tamu</h1><p class="msg">Tidak perlu mendaftarkan tamu dulu. Ketik nama, lalu salin atau kirim linknya. Nama otomatis tampil di undangan.</p>'+
       '<label for="qn">Nama tamu</label><input id="qn" placeholder="Budi Santoso" maxlength="80">'+
@@ -297,7 +297,7 @@ function adminView(sb){
     };
   }
   async function loadWishes(){
-    var wp=$('wp');
+    var wp=$('wishPanel');
     var r=await sb.from('wishes').select('*').eq('invitation_id',inv.id).order('created_at',{ascending:false});
     var ws=r.data||[];
     wp.innerHTML='<h1 style="font-size:1.3rem">Ucapan tamu ('+ws.length+')</h1>'+(ws.length?ws.map(function(w){
