@@ -153,6 +153,23 @@ a.phm.live{display:block}
 .inv.pantai .door svg{overflow:visible}
 .inv.eth.bintang #hero::before{background:var(--pat),var(--herobg)}
 .inv.eth.royal #hero::before{background:var(--pat),var(--herobg)}
+/* Sampul 3D adat Jawa: dua wayang berhadapan, lalu zoom ke Borobudur */
+.c3stage{position:absolute;inset:0;z-index:-2;overflow:hidden;background:linear-gradient(180deg,#2a170b 0%,#7a431a 24%,#d9873a 46%,#ffc67a 58%,#ffe2a8 62%);pointer-events:none}
+.inv.eth.c3d .cover::before{display:none}
+.c3col{position:absolute;inset:0;max-width:640px;margin:0 auto;perspective:900px;perspective-origin:50% 54%}
+.c3sc{position:absolute;left:0;right:0;bottom:40vh;transform:translateZ(-40px);transition:transform 2.4s cubic-bezier(.5,.05,.3,1)}
+.c3sc svg{width:100%;display:block;overflow:visible}
+.c3sc::after{content:"";position:absolute;left:-100vw;right:-100vw;top:calc(100% - 1px);height:70vh;background:linear-gradient(180deg,#150b06,#0a0503)}
+.c3w{position:absolute;bottom:40.5vh;height:min(21vh,46vw);transform:translateZ(30px);transition:transform 1.1s cubic-bezier(.5,0,.8,.4),opacity .9s ease}
+.c3w.l{left:-7%}.c3w.r{right:-7%}
+.c3w img{height:100%;width:auto;display:block;transform-origin:50% 100%;animation:c3sway 5s ease-in-out infinite alternate;filter:drop-shadow(0 0 1.5px #ffd592) drop-shadow(0 0 7px rgba(255,190,100,.55))}
+.c3w.r img{animation-direction:alternate-reverse}
+@keyframes c3sway{from{transform:rotate(-1.4deg)}to{transform:rotate(1.4deg)}}
+body.open.c3d .c3sc{transform:translateZ(640px)}
+body.open.c3d .c3w.l{transform:translate3d(-60vw,0,120px) rotate(-6deg);opacity:0}
+body.open.c3d .c3w.r{transform:translate3d(60vw,0,120px) rotate(6deg);opacity:0}
+.inv.eth.c3d .cover{transition:opacity .9s ease 1.5s}
+@media(prefers-reduced-motion:reduce){.c3w img{animation:none}}
 .auto .demobar{display:none}.auto .mus{display:none!important}
 @media(min-width:860px){.phones{height:500px}.phm.p1{left:calc(50% - 215px)}.phm.p2{left:calc(50% + 6px)}}
 @media(prefers-reduced-motion:reduce){.mqi,.tw{animation:none}.rvl{opacity:1;transform:none;transition:none}}
@@ -247,8 +264,8 @@ body.open.eth .door.r{transform:perspective(1400px) rotateY(100deg)}
 .inv.eth.covimg .cover{color:#f6e7c8;transition:opacity 1.8s ease .25s}
 .inv.eth.covimg .cover small{color:#e8bb63}
 .inv.eth.covimg #ob{background:#d9a441!important;color:#2a1508!important}
-.covimg .cover>*:not(.cvimg){transition:opacity .5s ease}
-body.open.covimg .cover>*:not(.cvimg){opacity:0}
+.covimg .cover>*:not(.cvimg):not(.c3stage){transition:opacity .5s ease}
+body.open.covimg .cover>*:not(.cvimg):not(.c3stage){opacity:0}
 body.open.covimg .cover .cvimg{transform:scale(1.35)}
 @media (prefers-reduced-motion:reduce){.inv .s.in .bph img,.inv .s.in>.wy,.cvimg{animation:none!important;transition-duration:.01s!important}}
 @media (prefers-reduced-motion:reduce){.door,.cover,.inv .s::before,.inv .s>*{transition-duration:.01s!important;transition-delay:0s!important}}
@@ -437,7 +454,7 @@ var JAWA_PAT='url("data:image/svg+xml,%3Csvg xmlns=%27http://www.w3.org/2000/svg
 var BUGIS_PAT='url("data:image/svg+xml,%3Csvg xmlns=%27http://www.w3.org/2000/svg%27 width=%2744%27 height=%2744%27 viewBox=%270 0 44 44%27%3E%3Cg fill=%27none%27 stroke=%27%23e0b04a%27 stroke-opacity=%27.17%27%3E%3Cpath d=%27M22 3 L41 22 L22 41 L3 22Z%27/%3E%3Cpath d=%27M22 12 L32 22 L22 32 L12 22Z%27/%3E%3C/g%3E%3C/svg%3E")';
 var ETH={
  jawa:{kick:'PAWIWAHAN',greet:'SUGENG RAWUH',door:gunungan,scene:borobudur,music:'jawa',
-  img:{door:'gunungan.png',scene:'borobudur.jpg',pria:'wayang-pria.png',wanita:'wayang-wanita.png',cover:'sampul.jpg'},
+  img:{door:'gunungan.png',scene:'borobudur.jpg',pria:'wayang-pria.png',wanita:'wayang-wanita.png',cover:'sampul.jpg',wl:'wayang-kiri.png',wr:'wayang-kanan.png'},
   v:{dc:'#c98d3f',doorbg:'radial-gradient(ellipse at 50% 42%,#f8e1ab 0%,#e0a653 36%,#8a531f 74%,#3a1f0c 100%)',herobg:'linear-gradient(180deg,#1b0f08 0%,#3b2111 45%,#9c5a22 80%,#e2a54c 100%)',pat:JAWA_PAT,ctext:'#2a1508',ckick:'#5b3314',btnbg:'#2a1508',btntext:'#f3e3c3'}},
  bugis:{kick:'PERNIKAHAN ADAT BUGIS',greet:"TABE'",door:bola,scene:pinisi,music:'bugis',
   img:{door:'bugis-pintu.png',scene:'bugis-pinisi.jpg',pria:'bugis-pria.png',wanita:'bugis-wanita.png',cover:'bugis-sampul.jpg'},
@@ -607,13 +624,19 @@ function pinisi(){
 function imgOk(src){return new Promise(function(res){var i=new Image(),t=setTimeout(function(){res(false)},4000);
   i.onload=function(){clearTimeout(t);res(true)};i.onerror=function(){clearTimeout(t);res(false)};i.src=src})}
 
+function c3stage(tp){
+  return '<div class="c3stage" aria-hidden="true"><div class="c3col"><div class="c3sc">'+tp.scene()+'</div>'+
+   '<div class="c3w l"><img src="'+tp.img.wl+'" alt=""></div><div class="c3w r"><img src="'+tp.img.wr+'" alt=""></div></div></div>';
+}
+
 async function renderInvitation(sb,v,demo,auto){
   var cf=v.theme_config||{},c=T[cf.palette]||T.zamrud,tp=ETH[cf.palette]||null;
   var ev=(v.events||[]).slice().sort(function(a,b){return a.sort_order-b.sort_order});
   var im={};
-  if(tp&&tp.img){var nm=['door','scene','pria','wanita','cover'];var ck=await Promise.all(nm.map(function(n){return imgOk(tp.img[n])}));nm.forEach(function(n,i){im[n]=ck[i]})}
+  if(tp&&tp.img){var nm=['door','scene','pria','wanita','cover','wl','wr'];var ck=await Promise.all(nm.map(function(n){return tp.img[n]?imgOk(tp.img[n]):Promise.resolve(false)}));nm.forEach(function(n,i){im[n]=ck[i]})}
+  var c3=!!(tp&&im.wl&&im.wr);if(c3)im.cover=false;
   document.title='Undangan '+v.groom_name+' & '+v.bride_name;
-  document.body.className='inv locked'+(tp?' eth '+cf.palette:'')+(im.cover?' covimg':'')+(auto?' auto':'');
+  document.body.className='inv locked'+(tp?' eth '+cf.palette:'')+(im.cover||c3?' covimg':'')+(c3?' c3d':'')+(auto?' auto':'');
   document.body.style.cssText='background:'+c.bg+';color:'+c.ink+';--a:'+c.acc+';--b:'+c.bg+';--b2:'+c.bg2+';--i:'+c.ink;
   if(tp){Object.keys(tp.v).forEach(function(k){document.body.style.setProperty('--'+k,tp.v[k])})}
   document.documentElement.style.scrollSnapType='y proximity';
@@ -625,12 +648,12 @@ async function renderInvitation(sb,v,demo,auto){
     return '<div class="e"><h3>'+esc(e.name)+'</h3><p class="t">'+w.tgl+', '+w.jam+' WIB</p><p>'+esc(e.venue_name)+'</p>'+
     (/^https?:\/\//.test(e.map_url||'')?'<p style="margin-top:8px"><a class="m" href="'+esc(e.map_url)+'" target="_blank" rel="noopener">Lihat lokasi di peta</a></p>':'')+'</div>'}).join('');
   var doors=tp
-    ?(im.cover?'':'<div class="door l" aria-hidden="true">'+(im.door?'<img class="gimg" src="'+tp.img.door+'" alt="">':tp.door('l'))+'</div><div class="door r" aria-hidden="true">'+(im.door?'<img class="gimg" src="'+tp.img.door+'" alt="">':tp.door('r'))+'</div>')
+    ?(im.cover||c3?'':'<div class="door l" aria-hidden="true">'+(im.door?'<img class="gimg" src="'+tp.img.door+'" alt="">':tp.door('l'))+'</div><div class="door r" aria-hidden="true">'+(im.door?'<img class="gimg" src="'+tp.img.door+'" alt="">':tp.door('r'))+'</div>')
     :'<div class="door l" aria-hidden="true"><span>'+ini(v.groom_name)+'</span></div><div class="door r" aria-hidden="true"><span>'+ini(v.bride_name)+'</span></div>';
   app.innerHTML=
    (demo?'<a class="demobar" href="?katalog=1">← Katalog template</a>':'')+
    doors+
-   '<div class="cover">'+(im.cover?'<img class="cvimg" src="'+tp.img.cover+'" alt="">':'')+'<small>'+(tp?tp.greet:'PERNIKAHAN')+'</small><h1 class="cn">'+esc(v.groom_name)+' &amp; '+esc(v.bride_name)+'</h1><p class="cg" id="cvg"></p><button class="pbtn" id="ob" style="'+btn+'">Buka undangan</button></div>'+
+   '<div class="cover">'+(c3?c3stage(tp):'')+(im.cover?'<img class="cvimg" src="'+tp.img.cover+'" alt="">':'')+'<small>'+(tp?tp.greet:'PERNIKAHAN')+'</small><h1 class="cn">'+esc(v.groom_name)+' &amp; '+esc(v.bride_name)+'</h1><p class="cg" id="cvg"></p><button class="pbtn" id="ob" style="'+btn+'">Buka undangan</button></div>'+
    '<main>'+
    '<section class="s" id="hero"><p class="k">'+(tp?tp.kick:'PERNIKAHAN')+'</p><h1 class="n">'+esc(v.groom_name)+'<i>&amp;</i>'+esc(v.bride_name)+'</h1><p class="d">'+(f0?f0.tgl.toUpperCase():'')+'</p><p class="p" id="kpd" style="margin-top:22px"></p>'+(tp?(im.scene?'<div class="bor bph"><img src="'+tp.img.scene+'" alt=""></div>':'<div class="bor">'+tp.scene()+'</div>'):'')+'</section>'+
    (v.quote?'<section class="s"><p class="q">“'+esc(v.quote)+'”</p></section>':'')+
@@ -647,8 +670,8 @@ async function renderInvitation(sb,v,demo,auto){
   mb.onclick=function(){music.toggle();syncMus()};
   $('ob').onclick=function(){
     if(!auto)music.play();syncMus();document.body.classList.add('open');
-    setTimeout(function(){hero.classList.add('in')},500);
-    setTimeout(function(){document.body.classList.remove('locked');document.body.classList.add('done')},1600);
+    setTimeout(function(){hero.classList.add('in')},c3?800:500);
+    setTimeout(function(){document.body.classList.remove('locked');document.body.classList.add('done')},c3?2600:1600);
   };
   if('IntersectionObserver' in window){
     var io=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting&&e.target!==hero)e.target.classList.add('in')})},{threshold:.3});
@@ -932,7 +955,7 @@ function adminView(sb){
     '</section>'+
     '<section id="tab-guest" class="hide"><div class="panel" id="guestPanel"></div></section>'+
     '<section id="tab-wish" class="hide"><div class="panel" id="wishPanel"></div></section>'+
-    '<p class="msg vtag">Versi 6.1</p></main>'+
+    '<p class="msg vtag">Versi 7.0</p></main>'+
     '<div class="savebar" id="savebar"><button class="btn" id="sv">Simpan</button><button class="btn o" id="pb">'+(inv&&inv.status==='active'?'Nonaktifkan':'Aktifkan undangan')+'</button><span class="msg" id="msg" role="status"></span></div>';
     showLink();guestsPanel();
     $('out').onclick=async function(){await sb.auth.signOut();history.replaceState(null,'',location.pathname);landingView()};
