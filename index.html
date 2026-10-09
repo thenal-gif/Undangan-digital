@@ -671,10 +671,13 @@ async function renderInvitation(sb,v,demo,auto){
   }else{publicExtras(sb,v,c)}
   if(auto){
     document.documentElement.style.scrollSnapType='none';
-    var sa=Array.prototype.slice.call(document.querySelectorAll('.inv .s')),ia=0;
+    var sa=Array.prototype.slice.call(document.querySelectorAll('.inv .s')),ia=0,paused=false;
+    window.addEventListener('message',function(e){if(e.data&&e.data.tpl==='auto')paused=e.data.state==='pause'});
     var stepA=function(){
+      if(paused){setTimeout(stepA,600);return}
       if(ia>=sa.length){document.body.style.transition='opacity .6s';document.body.style.opacity='0';setTimeout(function(){location.reload()},900);return}
-      sa[ia].scrollIntoView({behavior:'smooth',block:'start'});ia++;setTimeout(stepA,ia===1?2600:2200);
+      window.scrollTo({top:sa[ia].getBoundingClientRect().top+window.pageYOffset,behavior:'smooth'});
+      ia++;setTimeout(stepA,ia===1?2600:2200);
     };
     setTimeout(function(){$('ob').click();setTimeout(stepA,2300)},1500);
   }
@@ -775,6 +778,13 @@ function landingView(){
   '<section class="sec"><div class="shi"><div class="ctab rvl"><h2>Buat undangan digitalmu hari ini</h2><p>Mulai gratis, selesai dalam hitungan menit.</p><a class="btn big" href="?daftar=1">Mulai sekarang</a></div></div></section>'+
   '</main>'+siteFooter();
   revealObserve();
+  var phw=document.querySelector('.phones');
+  if(!reduce&&phw&&'IntersectionObserver' in window){
+    new IntersectionObserver(function(es){
+      var st=es[0].isIntersecting?'play':'pause';
+      document.querySelectorAll('.phm iframe').forEach(function(f){try{f.contentWindow.postMessage({tpl:'auto',state:st},'*')}catch(e){}});
+    },{threshold:.1}).observe(phw);
+  }
 }
 
 function catalogView(){
@@ -922,7 +932,7 @@ function adminView(sb){
     '</section>'+
     '<section id="tab-guest" class="hide"><div class="panel" id="guestPanel"></div></section>'+
     '<section id="tab-wish" class="hide"><div class="panel" id="wishPanel"></div></section>'+
-    '<p class="msg vtag">Versi 6.0</p></main>'+
+    '<p class="msg vtag">Versi 6.1</p></main>'+
     '<div class="savebar" id="savebar"><button class="btn" id="sv">Simpan</button><button class="btn o" id="pb">'+(inv&&inv.status==='active'?'Nonaktifkan':'Aktifkan undangan')+'</button><span class="msg" id="msg" role="status"></span></div>';
     showLink();guestsPanel();
     $('out').onclick=async function(){await sb.auth.signOut();history.replaceState(null,'',location.pathname);landingView()};
