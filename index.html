@@ -123,6 +123,40 @@ a.btn{display:inline-block;text-align:center;text-decoration:none}
 .savebar{position:fixed;left:0;right:0;bottom:0;z-index:30;display:flex;align-items:center;gap:10px;flex-wrap:wrap;padding:10px 16px calc(10px + env(safe-area-inset-bottom,0px));background:color-mix(in srgb,var(--card) 94%,transparent);backdrop-filter:blur(12px);border-top:1px solid var(--line)}
 .savebar .btn{padding:11px 20px}.savebar .msg{margin:0;min-height:0;flex:1;min-width:120px;font-size:.82rem}
 .vtag{text-align:center;font-size:.75rem;margin-top:18px}
+.hero{position:relative;overflow:hidden}
+.hbg i{position:absolute;border-radius:50%;filter:blur(70px);pointer-events:none}
+.hbg i:nth-child(1){width:280px;height:280px;left:-80px;top:-60px;background:var(--gold);opacity:.28}
+.hbg i:nth-child(2){width:320px;height:320px;right:-100px;top:120px;background:var(--acc);opacity:.16}
+.hero .shi{position:relative}
+.hero h1 em{background:linear-gradient(90deg,var(--gold),#e9c971 60%,var(--gold));-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;color:transparent}
+.phones{position:relative;height:450px}
+.phm{width:200px;height:400px;aspect-ratio:auto;background:#000}
+.phm.p1{left:calc(50% - 190px);top:40px}
+.phm.p2{left:calc(50% - 6px);top:0}
+a.phm.live{display:block}
+.phm iframe{position:absolute;top:0;left:0;width:390px;height:805px;border:0;transform-origin:0 0;transform:scale(.482);pointer-events:none;background:#000}
+.cap{text-align:center;color:var(--soft);font-size:.8rem;margin:8px 0 0}
+.mq{overflow:hidden;border-block:1px solid var(--line);background:var(--card);padding:14px 0}
+.mqi{display:flex;gap:42px;width:max-content;animation:mq 40s linear infinite;font:600 .95rem Fraunces,Georgia,serif;color:var(--soft)}
+.mqi span::before{content:"✦";color:var(--gold);margin-right:42px}
+@keyframes mq{to{transform:translateX(-50%)}}
+.rvl{opacity:0;transform:translateY(24px);transition:opacity .7s ease,transform .7s ease}
+.rvl.in{opacity:1;transform:none}
+.fc,.stp,.tcard{transition:opacity .7s ease,transform .25s ease,box-shadow .25s ease}
+.fc:hover,.stp:hover,.tcard:hover{transform:translateY(-4px);box-shadow:0 14px 30px rgba(20,33,61,.12)}
+.fi svg{width:22px;height:22px}
+.chips{display:flex;gap:8px;flex-wrap:wrap;margin:18px 0 0}
+.chips button{border:1px solid var(--line);background:var(--card);color:var(--ink);border-radius:99px;padding:8px 16px;font:600 .88rem 'Plus Jakarta Sans',system-ui;cursor:pointer}
+.chips button[aria-pressed="true"]{background:var(--acc);color:var(--onacc);border-color:var(--acc)}
+.tw{animation:tw 3s ease-in-out infinite}
+@keyframes tw{0%,100%{opacity:.25}50%{opacity:1}}
+.inv.pantai .door svg{overflow:visible}
+.inv.eth.bintang #hero::before{background:var(--pat),var(--herobg)}
+.inv.eth.royal #hero::before{background:var(--pat),var(--herobg)}
+.auto .demobar{display:none}.auto .mus{display:none!important}
+@media(min-width:860px){.phones{height:500px}.phm.p1{left:calc(50% - 215px)}.phm.p2{left:calc(50% + 6px)}}
+@media(prefers-reduced-motion:reduce){.mqi,.tw{animation:none}.rvl{opacity:1;transform:none;transition:none}}
+
 
 .tpl{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-top:6px}
 .tc{display:flex;flex-direction:column;align-items:center;gap:4px;padding:8px 4px;border-radius:12px;border:2px solid var(--line);background:var(--card);color:var(--ink);cursor:pointer;font:inherit}
@@ -253,13 +287,18 @@ body.open.covimg .cover .cvimg{transform:scale(1.35)}
 var SUPABASE_URL='https://zqmdimzvcdmjeadkfpcy.supabase.co';
 var SUPABASE_ANON_KEY='sb_publishable_nSUkwTNDq4LCvTANEZpGjA_O66CNBwr';
 // =================================================================
-var BRAND='Kirana Studio',WA='6281234567890'; // ganti nama dan nomor WhatsApp
+var BRAND='Thenal Studio',WA='6281234567890'; // ganti nama dan nomor WhatsApp
 var T={zamrud:{bg:'#0f2421',ink:'#f1e6cf',acc:'#d3ae62',bg2:'#163330'},
        blush:{bg:'#f2d7d5',ink:'#4a1f2e',acc:'#9c3b57',bg2:'#ecc4c1'},
        langit:{bg:'#dfe8f5',ink:'#1f2f5c',acc:'#3b5fb0',bg2:'#cddcef'},
        senja:{bg:'#2a1a3d',ink:'#f5d9ff',acc:'#e0a3ff',bg2:'#3a2552'},
        jawa:{bg:'#1e1109',ink:'#f3e3c3',acc:'#d9a441',bg2:'#2e1b0e'},
        bugis:{bg:'#2a0a10',ink:'#f7e8cf',acc:'#e0b04a',bg2:'#3d1018'}};
+T.taman={bg:'#fdf6f7',ink:'#34503f',acc:'#b5546b',bg2:'#f6e3e8'};
+T.bintang={bg:'#0b1030',ink:'#eef0ff',acc:'#f3d58a',bg2:'#141a45'};
+T.royal={bg:'#101012',ink:'#f4ead0',acc:'#d4af37',bg2:'#1b1b1f'};
+T.pantai={bg:'#10283a',ink:'#fff3e4',acc:'#ffb36b',bg2:'#173a52'};
+T.modern={bg:'#f7f7f5',ink:'#141414',acc:'#141414',bg2:'#ececE8'};
 var $=function(i){return document.getElementById(i)};
 var app=$('app');
 function esc(s){return String(s==null?'':s).replace(/[&<>"']/g,function(c){return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]})}
@@ -278,7 +317,7 @@ function start(){
   var sb=supabase.createClient(SUPABASE_URL,SUPABASE_ANON_KEY);
   var slugParam=new URLSearchParams(location.search).get('u');
   var qq=new URLSearchParams(location.search);
-  if(qq.get('demo')){demoView(qq.get('demo'))}else if(qq.get('katalog')){catalogView()}else if(slugParam){publicView(sb,slugParam)}else{adminView(sb)}
+  if(qq.get('demo')){demoView(qq.get('demo'),qq.get('auto'))}else if(qq.get('katalog')){catalogView()}else if(slugParam){publicView(sb,slugParam)}else{adminView(sb)}
 }
 
 /* ---------- Halaman publik ---------- */
@@ -295,6 +334,12 @@ function makeMusic(style){
   }
   function bar(){
     var t=ac.currentTime+.05,c=chords[step%4];
+    if(style==='bintang'){
+      var pn=[523.25,587.33,659.25,783.99,880,1046.5];
+      note(261.63,t,3.9,.1,'sine');note(392,t,3.9,.05,'sine');
+      [[0,2,4,3,5,3,4,2],[1,3,5,4,2,4,3,1]][step%2].forEach(function(k,i){note(pn[k],t+i*.5,2.2,.07,'sine');note(pn[k]*2,t+i*.5,.6,.015,'sine')});
+      step++;return;
+    }
     if(style==='bugis'){
       var ps=[329.63,392,440,523.25,587.33,659.25];
       var drum=function(tt,f,vol){var o=ac.createOscillator(),g=ac.createGain();o.type='sine';o.frequency.setValueAtTime(f*2,tt);o.frequency.exponentialRampToValueAtTime(f,tt+.12);g.gain.setValueAtTime(vol,tt);g.gain.exponentialRampToValueAtTime(.0001,tt+.4);o.connect(g);g.connect(master);o.start(tt);o.stop(tt+.45)};
@@ -376,12 +421,17 @@ function borobudur(){
 }
 
 var TEMPLATES=[
- {code:'zamrud',name:'Zamrud',cat:'Klasik',desc:'Hijau dan emas yang elegan'},
- {code:'blush',name:'Blush',cat:'Klasik',desc:'Merah muda lembut dan romantis'},
- {code:'langit',name:'Langit',cat:'Klasik',desc:'Biru segar dan modern'},
- {code:'senja',name:'Senja',cat:'Klasik',desc:'Ungu hangat dan dramatis'},
- {code:'jawa',name:'Adat Jawa',cat:'Adat',desc:'Gunungan wayang kulit, Borobudur terbit, batik kawung, dan gamelan'},
- {code:'bugis',name:'Adat Bugis',cat:'Adat',desc:'Rumah Bugis, perahu Pinisi, motif sulapa eppa, dan petikan kecapi'}
+ {code:'jawa',name:'Adat Jawa',cat:'Adat',desc:'Gunungan wayang, Borobudur terbit, batik kawung, dan gamelan'},
+ {code:'bugis',name:'Adat Bugis',cat:'Adat',desc:'Rumah Bugis, perahu Pinisi, sulapa eppa, dan petikan kecapi'},
+ {code:'taman',name:'Taman Bunga',cat:'Romantis',desc:'Gerbang bunga dan daun yang lembut dan segar'},
+ {code:'bintang',name:'Malam Berbintang',cat:'Romantis',desc:'Bulan purnama dan langit penuh bintang yang berkelip'},
+ {code:'pantai',name:'Pantai Senja',cat:'Romantis',desc:'Matahari terbenam, ombak, dan siluet pohon kelapa'},
+ {code:'royal',name:'Royal Gold',cat:'Elegan',desc:'Art deco hitam dan emas yang mewah'},
+ {code:'zamrud',name:'Zamrud Klasik',cat:'Elegan',desc:'Hijau dan emas dengan sampul inisial'},
+ {code:'modern',name:'Monokrom',cat:'Modern',desc:'Hitam putih minimalis dengan dua cincin'},
+ {code:'langit',name:'Langit',cat:'Modern',desc:'Biru segar dan ringan'},
+ {code:'blush',name:'Blush',cat:'Romantis',desc:'Merah muda lembut dan manis'},
+ {code:'senja',name:'Senja Ungu',cat:'Elegan',desc:'Ungu hangat dan dramatis'}
 ];
 var JAWA_PAT='url("data:image/svg+xml,%3Csvg xmlns=%27http://www.w3.org/2000/svg%27 width=%2756%27 height=%2756%27 viewBox=%270 0 56 56%27%3E%3Cg fill=%27none%27 stroke=%27%23d9a441%27 stroke-opacity=%27.16%27%3E%3Cellipse cx=%2728%27 cy=%2714%27 rx=%279%27 ry=%2714%27/%3E%3Cellipse cx=%2728%27 cy=%2742%27 rx=%279%27 ry=%2714%27/%3E%3Cellipse cx=%2714%27 cy=%2728%27 rx=%2714%27 ry=%279%27/%3E%3Cellipse cx=%2742%27 cy=%2728%27 rx=%2714%27 ry=%279%27/%3E%3C/g%3E%3C/svg%3E")';
 var BUGIS_PAT='url("data:image/svg+xml,%3Csvg xmlns=%27http://www.w3.org/2000/svg%27 width=%2744%27 height=%2744%27 viewBox=%270 0 44 44%27%3E%3Cg fill=%27none%27 stroke=%27%23e0b04a%27 stroke-opacity=%27.17%27%3E%3Cpath d=%27M22 3 L41 22 L22 41 L3 22Z%27/%3E%3Cpath d=%27M22 12 L32 22 L22 32 L12 22Z%27/%3E%3C/g%3E%3C/svg%3E")';
@@ -394,9 +444,131 @@ var ETH={
   v:{dc:'#8a1e26',doorbg:'radial-gradient(ellipse at 50% 42%,#ffd98a 0%,#e07a3a 38%,#8a1e26 74%,#34080e 100%)',herobg:'linear-gradient(180deg,#240810 0%,#5a1620 48%,#c0502a 82%,#f0a640 100%)',pat:BUGIS_PAT,ctext:'#2a0a0e',ckick:'#5a1620',btnbg:'#2a0a0e',btntext:'#ffe6b8'}}
 };
 
+function halves(inner,half){
+  var vb=half==='l'?'0 0 100 300':'100 0 100 300',par=half==='l'?'xMaxYMid meet':'xMinYMid meet';
+  return '<svg viewBox="'+vb+'" preserveAspectRatio="'+par+'" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">'+inner+'</svg>';
+}
+function svg400(inner){return '<svg viewBox="0 0 400 190" preserveAspectRatio="xMidYMax meet" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">'+inner+'</svg>'}
+function leaf(x,y,deg,c,rx,ry){return '<ellipse cx="'+x.toFixed(1)+'" cy="'+y.toFixed(1)+'" rx="'+(rx||9)+'" ry="'+(ry||3.6)+'" fill="'+c+'" transform="rotate('+deg.toFixed(0)+' '+x.toFixed(1)+' '+y.toFixed(1)+')"/>'}
+function flower(x,y,r,c1,c2){
+  var s='';for(var k=0;k<6;k++){s+='<ellipse cx="'+x+'" cy="'+(y-r*.55)+'" rx="'+(r*.38)+'" ry="'+(r*.62)+'" fill="'+(k%2?c1:c2)+'" transform="rotate('+(k*60)+' '+x+' '+y+')" opacity=".95"/>'}
+  return s+'<circle cx="'+x+'" cy="'+y+'" r="'+(r*.28)+'" fill="#f2c14e"/>';
+}
+
+/* ---- Taman Bunga ---- */
+function taman(half){
+  var G1='#4f7a5a',G2='#7fae86',P1='#e58fa6',P2='#f6c6d2',s='';
+  s+='<path d="M24 292 V128 A76 76 0 0 1 176 128 V292" fill="none" stroke="'+G1+'" stroke-width="3"/>';
+  for(var i=0;i<=30;i++){var a=Math.PI*i/30,nx=-Math.cos(a),ny=-Math.sin(a),px=100+nx*76,py=128+ny*76,ang=Math.atan2(ny,nx)*180/Math.PI,o=i%2?8:-8;
+    s+=leaf(px+nx*o,py+ny*o,ang+(i%2?35:-35),i%3?G2:G1)}
+  for(var y=140;y<=290;y+=13){var j=(y/13)|0,o2=j%2?7:-7;
+    s+=leaf(24+o2,y,j%2?-30:30,j%3?G2:G1)+leaf(176-o2,y,j%2?30:-30,j%3?G2:G1)}
+  s+=flower(100,46,22,P1,P2)+flower(24,176,13,P1,P2)+flower(176,176,13,P1,P2)+flower(24,252,11,P2,P1)+flower(176,252,11,P2,P1)+flower(58,72,9,P2,P1)+flower(142,72,9,P2,P1);
+  return halves(s,half);
+}
+function tamanScene(){
+  var G1='#4f7a5a',G2='#7fae86',P1='#e58fa6',P2='#f6c6d2',s='';
+  for(var i=0;i<21;i++){var x=i*20,h=34+(Math.sin(i*1.7)+1)*30;
+    s+='<path d="M'+x+' 190 Q'+(x+4)+' '+(190-h*.5)+' '+x+' '+(190-h)+'" fill="none" stroke="'+G1+'" stroke-width="2"/>';
+    s+=leaf(x+7,190-h*.35,-30,G2,9,3.4)+leaf(x-7,190-h*.6,210,G1,9,3.4);
+    s+=flower(x,190-h,6+(i%3)*2,i%2?P1:P2,i%2?P2:P1)}
+  s+='<rect x="0" y="185" width="400" height="5" fill="'+G1+'"/>';
+  return svg400(s);
+}
+
+/* ---- Malam Berbintang ---- */
+function bintang(half){
+  var s='<defs><radialGradient id="mg" cx="50%" cy="50%" r="50%"><stop offset="0" stop-color="#fff3c4" stop-opacity=".9"/><stop offset="1" stop-color="#f3d58a" stop-opacity="0"/></radialGradient></defs>';
+  for(var i=0;i<54;i++){var x=(i*47.3)%200,y=(i*83.7)%290,r=.5+((i*7)%10)/10*1.3;
+    s+='<circle class="tw" cx="'+x.toFixed(1)+'" cy="'+y.toFixed(1)+'" r="'+r.toFixed(1)+'" fill="#fff8e0" style="animation-delay:'+((i%7)*.45).toFixed(2)+'s"/>'}
+  s+='<circle cx="100" cy="120" r="88" fill="url(#mg)"/><circle cx="100" cy="120" r="40" fill="#fbe9ae"/>';
+  s+='<circle cx="86" cy="108" r="7" fill="#e9d08a" opacity=".6"/><circle cx="112" cy="136" r="10" fill="#e9d08a" opacity=".5"/><circle cx="106" cy="98" r="4" fill="#e9d08a" opacity=".6"/>';
+  s+='<path d="M16 236 L44 210 L66 226 L92 198" fill="none" stroke="#f3d58a" stroke-width=".8" opacity=".5"/><path d="M184 236 L156 210 L134 226 L108 198" fill="none" stroke="#f3d58a" stroke-width=".8" opacity=".5"/>';
+  return halves(s,half);
+}
+function bintangScene(){
+  var s='<path d="M0 150 Q70 112 140 138 T280 128 T400 118 V190 H0Z" fill="#0a0f33"/><path d="M0 170 Q90 140 180 160 T400 150 V190 H0Z" fill="#05081d"/>';
+  for(var i=0;i<14;i++){var x=14+i*28+((i*13)%9),h=26+(i*11)%22;
+    s+='<path d="M'+(x-9)+' 184 L'+x+' '+(184-h)+' L'+(x+9)+' 184Z" fill="#05081d"/><path d="M'+(x-7)+' '+(184-h*.5)+' L'+x+' '+(184-h-4)+' L'+(x+7)+' '+(184-h*.5)+'Z" fill="#05081d"/>'}
+  s+='<line class="tw" x1="300" y1="30" x2="342" y2="12" stroke="#fff8e0" stroke-width="1.5" stroke-linecap="round"/><circle class="tw" cx="60" cy="40" r="1.6" fill="#fff8e0"/><circle class="tw" cx="120" cy="22" r="1.2" fill="#fff8e0"/><circle class="tw" cx="250" cy="52" r="1.4" fill="#fff8e0"/>';
+  return svg400(s);
+}
+
+/* ---- Royal Gold (art deco) ---- */
+function royal(half){
+  var G='#d4af37',s='<defs><clipPath id="rc"><rect x="14" y="30" width="172" height="262"/></clipPath></defs><g clip-path="url(#rc)">';
+  for(var i=0;i<=18;i++){var a=Math.PI*i/18;s+='<line x1="100" y1="292" x2="'+(100-Math.cos(a)*190).toFixed(1)+'" y2="'+(292-Math.sin(a)*262).toFixed(1)+'" stroke="'+G+'" stroke-width=".7" opacity=".5"/>'}
+  [74,56,40,26].forEach(function(r,k){s+='<path d="M'+(100-r)+' 292 A'+r+' '+r+' 0 0 1 '+(100+r)+' 292 Z" fill="'+(k%2?'#14120a':'#1f1a0c')+'" stroke="'+G+'" stroke-width="'+(k?1.2:2.2)+'"/>'});
+  s+='</g><rect x="14" y="30" width="172" height="262" fill="none" stroke="'+G+'" stroke-width="1.8"/><rect x="22" y="38" width="156" height="254" fill="none" stroke="'+G+'" stroke-width=".8"/>';
+  s+='<path d="M100 6 L114 30 L100 54 L86 30Z" fill="#14120a" stroke="'+G+'" stroke-width="1.6"/><path d="M100 16 L108 30 L100 44 L92 30Z" fill="'+G+'"/>';
+  return halves(s,half);
+}
+function royalScene(){
+  var G='#d4af37',s='';
+  for(var i=0;i<=16;i++){var a=Math.PI*i/16;s+='<line x1="200" y1="190" x2="'+(200-Math.cos(a)*270).toFixed(1)+'" y2="'+(190-Math.sin(a)*190).toFixed(1)+'" stroke="'+G+'" stroke-width=".7" opacity=".3"/>'}
+  var L=[[10,30,56],[42,26,86],[70,28,118],[100,24,146],[126,22,104],[150,18,78]];
+  var bld=function(x,w,h){return '<rect x="'+x+'" y="'+(190-h)+'" width="'+w+'" height="'+h+'" fill="#0a0a0c" stroke="'+G+'" stroke-width=".8"/><path d="M'+(x+w*.3)+' '+(190-h+8)+' V186 M'+(x+w*.7)+' '+(190-h+8)+' V186" stroke="'+G+'" stroke-width=".6" opacity=".4"/>'};
+  L.forEach(function(b){s+=bld(b[0],b[1],b[2])+bld(400-b[0]-b[1],b[1],b[2])});
+  s+=bld(176,48,170)+'<rect x="186" y="'+(190-190)+'" width="28" height="22" fill="#0a0a0c" stroke="'+G+'" stroke-width=".8"/><path d="M200 -6 V0" stroke="'+G+'"/>';
+  return svg400(s);
+}
+
+/* ---- Pantai Senja ---- */
+function palm(x,by,lean,sc){
+  var tx=x+lean,ty=by-120*sc,c='#06141d',s='';
+  s+='<path d="M'+x+' '+by+' Q'+(x+lean*.2)+' '+(by-60*sc)+' '+tx+' '+ty+'" fill="none" stroke="'+c+'" stroke-width="'+(5*sc)+'" stroke-linecap="round"/>';
+  [-165,-130,-95,-60,-25,10,45].forEach(function(d){var r=d*Math.PI/180;
+    s+='<path d="M'+tx+' '+ty+' Q'+(tx+Math.cos(r)*24*sc)+' '+(ty+Math.sin(r)*30*sc-8*sc)+' '+(tx+Math.cos(r)*44*sc)+' '+(ty+Math.sin(r)*30*sc+14*sc)+'" fill="none" stroke="'+c+'" stroke-width="'+(3.4*sc)+'" stroke-linecap="round"/>'});
+  return s;
+}
+function pantai(half){
+  var s='<defs><linearGradient id="sg" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#19506e"/><stop offset="1" stop-color="#19506e" stop-opacity="0"/></linearGradient><radialGradient id="pg" cx="50%" cy="50%" r="50%"><stop offset="0" stop-color="#ffe2a8" stop-opacity=".95"/><stop offset="1" stop-color="#ff9a62" stop-opacity="0"/></radialGradient></defs>';
+  s+='<circle cx="100" cy="212" r="100" fill="url(#pg)"/><circle cx="100" cy="212" r="38" fill="#ffd9a0"/><rect x="-400" y="212" width="1000" height="140" fill="url(#sg)"/>';
+  for(var i=0;i<7;i++){var w=60-i*8;s+='<rect x="'+(100-w/2)+'" y="'+(218+i*10)+'" width="'+w+'" height="2.4" rx="1.2" fill="#ffd9a0" opacity="'+(.8-i*.1).toFixed(2)+'"/>'}
+  s+='<path d="M-200 252 q25 -6 50 0 t50 0 t50 0 t50 0 t50 0 t50 0 t50 0 t50 0 t50 0 t50 0 t50 0 t50 0" fill="none" stroke="#2d7a9a" stroke-width="1.2" opacity=".6"/><path d="M-200 272 q25 -6 50 0 t50 0 t50 0 t50 0 t50 0 t50 0 t50 0 t50 0 t50 0 t50 0 t50 0 t50 0" fill="none" stroke="#2d7a9a" stroke-width="1.2" opacity=".4"/>';
+  s+=palm(24,228,30,1)+palm(176,228,-30,1)+palm(54,236,16,.55)+palm(146,236,-16,.55);
+  return halves(s,half);
+}
+function pantaiScene(){
+  var s='<defs><radialGradient id="pg2" cx="50%" cy="50%" r="50%"><stop offset="0" stop-color="#ffe2a8" stop-opacity=".9"/><stop offset="1" stop-color="#ff9a62" stop-opacity="0"/></radialGradient></defs>';
+  s+='<circle cx="200" cy="140" r="110" fill="url(#pg2)"/><circle cx="200" cy="146" r="40" fill="#ffd9a0"/><rect x="0" y="146" width="400" height="44" fill="#19506e"/>';
+  for(var i=0;i<5;i++){var w=90-i*14;s+='<rect x="'+(200-w/2)+'" y="'+(152+i*8)+'" width="'+w+'" height="2.2" rx="1.1" fill="#ffd9a0" opacity="'+(.8-i*.13).toFixed(2)+'"/>'}
+  s+=palm(46,176,26,.85)+palm(354,176,-26,.85)+palm(90,182,14,.5)+palm(310,182,-14,.5);
+  s+='<path d="M0 182 q25 -5 50 0 t50 0 t50 0 t50 0 t50 0 t50 0 t50 0 t50 0" fill="#0f3a52"/>';
+  return svg400(s);
+}
+
+/* ---- Monokrom ---- */
+function modern(half){
+  var C='#141414',s='<circle cx="82" cy="140" r="48" fill="none" stroke="'+C+'" stroke-width="1.6"/><circle cx="118" cy="140" r="48" fill="none" stroke="'+C+'" stroke-width="1.6"/><circle cx="100" cy="140" r="3" fill="'+C+'"/><path d="M40 40 H160 M40 260 H160" stroke="'+C+'" stroke-width=".8"/>';
+  return halves(s,half);
+}
+function modernScene(){
+  var C='#141414';
+  return svg400('<path d="M120 190 V120 A80 80 0 0 1 280 120 V190" fill="none" stroke="'+C+'" stroke-width="1.4"/><path d="M146 190 V124 A54 54 0 0 1 254 124 V190" fill="none" stroke="'+C+'" stroke-width=".8"/><circle cx="200" cy="112" r="16" fill="'+C+'"/><path d="M0 189 H400" stroke="'+C+'" stroke-width="1.4"/>');
+}
+
+var PAT_LEAF='url("data:image/svg+xml,%3Csvg xmlns=%27http://www.w3.org/2000/svg%27 width=%2748%27 height=%2748%27 viewBox=%270 0 48 48%27%3E%3Cg fill=%27%234f7a5a%27 fill-opacity=%27.13%27%3E%3Cpath d=%27M12 6 C17 12 17 19 12 26 C7 19 7 12 12 6Z%27/%3E%3Cpath d=%27M36 28 C41 34 41 41 36 48 C31 41 31 34 36 28Z%27/%3E%3C/g%3E%3C/svg%3E")';
+var PAT_STAR='url("data:image/svg+xml,%3Csvg xmlns=%27http://www.w3.org/2000/svg%27 width=%27140%27 height=%27140%27 viewBox=%270 0 140 140%27%3E%3Cg fill=%27%23f3d58a%27 fill-opacity=%27.3%27%3E%3Cpath d=%27M95 50 L97 58 L105 60 L97 62 L95 70 L93 62 L85 60 L93 58Z%27/%3E%3Cpath d=%27M30 22 L31 26 L35 27 L31 28 L30 32 L29 28 L25 27 L29 26Z%27/%3E%3Ccircle cx=%2760%27 cy=%27110%27 r=%271.3%27/%3E%3Ccircle cx=%27125%27 cy=%27118%27 r=%271%27/%3E%3Ccircle cx=%2712%27 cy=%2775%27 r=%271.1%27/%3E%3Ccircle cx=%27115%27 cy=%2720%27 r=%27.9%27/%3E%3Ccircle cx=%2770%27 cy=%2730%27 r=%27.8%27/%3E%3C/g%3E%3C/svg%3E")';
+var PAT_DECO='url("data:image/svg+xml,%3Csvg xmlns=%27http://www.w3.org/2000/svg%27 width=%2740%27 height=%2740%27 viewBox=%270 0 40 40%27%3E%3Cg fill=%27none%27 stroke=%27%23d4af37%27 stroke-opacity=%27.16%27%3E%3Cpath d=%27M0 40 A20 20 0 0 1 40 40%27/%3E%3Cpath d=%27M8 40 A12 12 0 0 1 32 40%27/%3E%3Cpath d=%27M16 40 A4 4 0 0 1 24 40%27/%3E%3Cpath d=%27M-20 20 A20 20 0 0 1 20 20%27/%3E%3Cpath d=%27M20 20 A20 20 0 0 1 60 20%27/%3E%3C/g%3E%3C/svg%3E")';
+var PAT_WAVE='url("data:image/svg+xml,%3Csvg xmlns=%27http://www.w3.org/2000/svg%27 width=%2760%27 height=%2720%27 viewBox=%270 0 60 20%27%3E%3Cpath d=%27M0 10 Q15 0 30 10 T60 10%27 fill=%27none%27 stroke=%27%23ffffff%27 stroke-opacity=%27.12%27/%3E%3C/svg%3E")';
+var PAT_DOT='url("data:image/svg+xml,%3Csvg xmlns=%27http://www.w3.org/2000/svg%27 width=%2724%27 height=%2724%27 viewBox=%270 0 24 24%27%3E%3Ccircle cx=%2712%27 cy=%2712%27 r=%27.9%27 fill=%27%23000%27 fill-opacity=%27.14%27/%3E%3C/svg%3E")';
+
+
+ETH.taman={kick:'PERNIKAHAN',greet:'SELAMAT DATANG',door:taman,scene:tamanScene,music:'',
+ v:{dc:'#f6dfe5',doorbg:'radial-gradient(ellipse at 50% 42%,#ffffff 0%,#f9e6ea 45%,#e8bcc8 100%)',herobg:'linear-gradient(180deg,#fdf6f7 0%,#f6e3e8 62%,#efc9d3 100%)',pat:PAT_LEAF,ctext:'#34503f',ckick:'#b5546b',btnbg:'#34503f',btntext:'#ffffff'}};
+ETH.bintang={kick:'PERNIKAHAN',greet:'DENGAN CINTA',door:bintang,scene:bintangScene,music:'bintang',
+ v:{dc:'#141a50',doorbg:'radial-gradient(ellipse at 50% 40%,#2a3580 0%,#141a50 52%,#070a22 100%)',herobg:'linear-gradient(180deg,#070b22 0%,#0f1747 58%,#27306b 100%)',pat:PAT_STAR,ctext:'#eef0ff',ckick:'#f3d58a',btnbg:'#f3d58a',btntext:'#1a1500'}};
+ETH.royal={kick:'THE WEDDING OF',greet:'YOU ARE INVITED',door:royal,scene:royalScene,music:'',
+ v:{dc:'#14120a',doorbg:'radial-gradient(ellipse at 50% 45%,#2b2412 0%,#14120a 55%,#08080a 100%)',herobg:'linear-gradient(180deg,#09090b 0%,#17140c 58%,#3a2f12 100%)',pat:PAT_DECO,ctext:'#f4ead0',ckick:'#d4af37',btnbg:'#d4af37',btntext:'#14120a'}};
+ETH.pantai={kick:'PERNIKAHAN',greet:'SELAMAT DATANG',door:pantai,scene:pantaiScene,music:'',
+ v:{dc:'#b5557a',doorbg:'radial-gradient(ellipse at 50% 70%,#ffd9a0 0%,#ff9a62 28%,#b5557a 60%,#2a3f6e 100%)',herobg:'linear-gradient(180deg,#1b3a5c 0%,#b5557a 52%,#ff9a62 80%,#ffd08a 100%)',pat:PAT_WAVE,ctext:'#2a1020',ckick:'#7a2a45',btnbg:'#2a1020',btntext:'#ffe9cc'}};
+ETH.modern={kick:'THE WEDDING OF',greet:'SAVE THE DATE',door:modern,scene:modernScene,music:'',
+ v:{dc:'#ececE8',doorbg:'radial-gradient(ellipse at 50% 40%,#ffffff 0%,#ececE8 70%,#dcdcd6 100%)',herobg:'linear-gradient(180deg,#f7f7f5 0%,#ececE8 100%)',pat:PAT_DOT,ctext:'#141414',ckick:'#6b6b66',btnbg:'#141414',btntext:'#ffffff'}};
+
 function tplCards(sel){
-  return TEMPLATES.map(function(t){var p=T[t.code];
-    return '<button type="button" class="tc" data-t="'+t.code+'" aria-pressed="'+(t.code===sel)+'"><span class="tcs" style="background:linear-gradient(135deg,'+p.bg+','+p.bg2+');color:'+p.acc+'">'+(ETH[t.code]?'✦':'●')+'</span><b>'+esc(t.name)+'</b><small>'+esc(t.cat)+'</small></button>'}).join('');
+  return TEMPLATES.map(function(t){var p=T[t.code],tp=ETH[t.code];
+    return '<button type="button" class="tc" data-t="'+t.code+'" aria-pressed="'+(t.code===sel)+'"><span class="tcs" style="background:'+(tp?tp.v.herobg:'linear-gradient(135deg,'+p.bg+','+p.bg2+')')+';color:'+p.acc+'">'+(tp?'✦':'●')+'</span><b>'+esc(t.name)+'</b><small>'+esc(t.cat)+'</small></button>'}).join('');
 }
 
 function bola(half){
@@ -435,13 +607,13 @@ function pinisi(){
 function imgOk(src){return new Promise(function(res){var i=new Image(),t=setTimeout(function(){res(false)},4000);
   i.onload=function(){clearTimeout(t);res(true)};i.onerror=function(){clearTimeout(t);res(false)};i.src=src})}
 
-async function renderInvitation(sb,v,demo){
+async function renderInvitation(sb,v,demo,auto){
   var cf=v.theme_config||{},c=T[cf.palette]||T.zamrud,tp=ETH[cf.palette]||null;
   var ev=(v.events||[]).slice().sort(function(a,b){return a.sort_order-b.sort_order});
   var im={};
-  if(tp){var nm=['door','scene','pria','wanita','cover'];var ck=await Promise.all(nm.map(function(n){return imgOk(tp.img[n])}));nm.forEach(function(n,i){im[n]=ck[i]})}
+  if(tp&&tp.img){var nm=['door','scene','pria','wanita','cover'];var ck=await Promise.all(nm.map(function(n){return imgOk(tp.img[n])}));nm.forEach(function(n,i){im[n]=ck[i]})}
   document.title='Undangan '+v.groom_name+' & '+v.bride_name;
-  document.body.className='inv locked'+(tp?' eth '+cf.palette:'')+(im.cover?' covimg':'');
+  document.body.className='inv locked'+(tp?' eth '+cf.palette:'')+(im.cover?' covimg':'')+(auto?' auto':'');
   document.body.style.cssText='background:'+c.bg+';color:'+c.ink+';--a:'+c.acc+';--b:'+c.bg+';--b2:'+c.bg2+';--i:'+c.ink;
   if(tp){Object.keys(tp.v).forEach(function(k){document.body.style.setProperty('--'+k,tp.v[k])})}
   document.documentElement.style.scrollSnapType='y proximity';
@@ -474,7 +646,7 @@ async function renderInvitation(sb,v,demo){
   function syncMus(){mb.classList.toggle('off',!music.isOn());mb.setAttribute('aria-label',music.isOn()?'Matikan musik':'Nyalakan musik')}
   mb.onclick=function(){music.toggle();syncMus()};
   $('ob').onclick=function(){
-    music.play();syncMus();document.body.classList.add('open');
+    if(!auto)music.play();syncMus();document.body.classList.add('open');
     setTimeout(function(){hero.classList.add('in')},500);
     setTimeout(function(){document.body.classList.remove('locked');document.body.classList.add('done')},1600);
   };
@@ -497,6 +669,15 @@ async function renderInvitation(sb,v,demo){
   if(demo){
     document.querySelector('#extra .xt').innerHTML='<h2 class="h">Konfirmasi dan ucapan</h2><p class="p">Di undangan asli, tamu bisa konfirmasi hadir dan menulis ucapan di sini.</p><a class="pbtn" style="'+btn+';display:inline-block;text-decoration:none" href="?katalog=1">← Kembali ke katalog</a>';
   }else{publicExtras(sb,v,c)}
+  if(auto){
+    document.documentElement.style.scrollSnapType='none';
+    var sa=Array.prototype.slice.call(document.querySelectorAll('.inv .s')),ia=0;
+    var stepA=function(){
+      if(ia>=sa.length){document.body.style.transition='opacity .6s';document.body.style.opacity='0';setTimeout(function(){location.reload()},900);return}
+      sa[ia].scrollIntoView({behavior:'smooth',block:'start'});ia++;setTimeout(stepA,ia===1?2600:2200);
+    };
+    setTimeout(function(){$('ob').click();setTimeout(stepA,2300)},1500);
+  }
 }
 
 async function publicView(sb,slug){
@@ -505,17 +686,18 @@ async function publicView(sb,slug){
   renderInvitation(sb,r.data,false);
 }
 
-function demoView(code){
+function demoView(code,auto){
   var t0=Date.now()+30*864e5,iso=function(h){return new Date(t0+h*36e5).toISOString()};
   renderInvitation(null,{groom_name:'Raka',bride_name:'Anindya',slug:'contoh',
     groom_parents:'Putra dari Bapak Hendra dan Ibu Sari',bride_parents:'Putri dari Bapak Budi dan Ibu Rini',
     quote:'Di antara tanda-tanda kebesaran-Nya, Dia menciptakan pasangan untukmu agar kamu merasa tenteram.',
     theme_config:{palette:T[code]?code:'zamrud',story:'Kami bertemu di bangku kuliah dan tumbuh bersama sejak saat itu.',dresscode:'Warna senada',bank:'BCA',acc_no:'1234567890',acc_name:'Raka Pratama'},
-    events:[{name:'Akad nikah',starts_at:iso(0),venue_name:'Masjid Al-Hikmah',map_url:'',sort_order:0},{name:'Resepsi',starts_at:iso(3),venue_name:'Gedung Graha Asri',map_url:'',sort_order:1}]},true);
+    events:[{name:'Akad nikah',starts_at:iso(0),venue_name:'Masjid Al-Hikmah',map_url:'',sort_order:0},{name:'Resepsi',starts_at:iso(3),venue_name:'Gedung Graha Asri',map_url:'',sort_order:1}]},true,auto);
 }
 
+function logoHtml(){return '<a class="logo" href="./"><span class="lg">'+esc(BRAND.charAt(0))+'</span>'+esc(BRAND)+'</a>'}
 function siteHeader(){
-  return '<header class="sh"><div class="shi"><a class="logo" href="./"><span class="lg">✦</span>'+esc(BRAND)+'</a>'+
+  return '<header class="sh"><div class="shi">'+logoHtml()+
    '<nav class="snav"><a href="./#fitur">Fitur</a><a href="?katalog=1">Template</a><a href="./#cara">Cara kerja</a><a href="./#faq">FAQ</a></nav>'+
    '<div class="sact"><a class="lnk" href="?masuk=1">Masuk</a><a class="btn sm2" href="?daftar=1">Daftar gratis</a></div></div></header>';
 }
@@ -526,58 +708,87 @@ function phoneMock(code,cls){
   var tp=ETH[code],p=T[code];
   return '<div class="phm '+cls+'" aria-hidden="true" style="background:'+(tp?tp.v.herobg:'linear-gradient(160deg,'+p.bg+','+p.bg2+')')+'"><div class="phs">'+(tp?tp.scene():'')+'</div><div class="pht" style="color:'+p.ink+'"><small style="color:'+p.acc+'">'+(tp?esc(tp.kick):'PERNIKAHAN')+'</small><b>Raka<br>&amp;<br>Anindya</b></div></div>';
 }
+function phoneLive(code,cls){
+  return '<a class="phm live '+cls+'" href="?demo='+code+'" target="_blank" rel="noopener" aria-label="Buka contoh template"><iframe src="?demo='+code+'&auto=1" title="Contoh undangan" loading="lazy" tabindex="-1" scrolling="no"></iframe></a>';
+}
 function tcardHtml(t){
   var p=T[t.code],tp=ETH[t.code];
   var th=tp?'<div class="th" style="background:'+tp.v.herobg+'"><div class="ths">'+tp.scene()+'</div></div>'
            :'<div class="th" style="background:linear-gradient(160deg,'+p.bg+','+p.bg2+')"><b style="color:'+p.acc+'">R &amp; A</b></div>';
-  return '<div class="tcard">'+th+'<div class="tb"><span class="bd" style="margin:0;align-self:flex-start">'+esc(t.cat)+'</span><h2>'+esc(t.name)+'</h2><p>'+esc(t.desc)+'</p><a class="btn o" href="?demo='+t.code+'" target="_blank" rel="noopener">Lihat contoh</a></div></div>';
+  return '<div class="tcard" data-cat="'+esc(t.cat)+'">'+th+'<div class="tb"><span class="bd" style="margin:0;align-self:flex-start">'+esc(t.cat)+'</span><h2>'+esc(t.name)+'</h2><p>'+esc(t.desc)+'</p><a class="btn o" href="?demo='+t.code+'" target="_blank" rel="noopener">Lihat contoh</a></div></div>';
 }
 function pageShell(){app.className='';app.style.cssText='padding:0;max-width:none'}
+var IC={
+ link:'<path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/>',
+ ok:'<path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><path d="M22 4 12 14.01l-3-3"/>',
+ msg:'<path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/>',
+ music:'<path d="M9 18V5l12-2v13"/><circle cx="6" cy="18" r="3"/><circle cx="18" cy="16" r="3"/>',
+ pin:'<path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/>',
+ star:'<path d="m12 2 3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01z"/>'
+};
+function ico(k){return '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">'+IC[k]+'</svg>'}
+function revealObserve(){
+  var els=document.querySelectorAll('.rvl');
+  if(!('IntersectionObserver' in window)){els.forEach(function(e){e.classList.add('in')});return}
+  var io=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target)}})},{threshold:.12});
+  els.forEach(function(e){io.observe(e)});
+}
 
 function landingView(){
   document.title=BRAND+' · Undangan digital';
   pageShell();document.documentElement.style.scrollPaddingTop='72px';
-  var fit=[['↗','Link per nama tamu','Ganti nama di ujung link, dan tamu langsung disapa dengan namanya. Tanpa perlu mendaftarkan satu per satu.'],
-    ['✓','RSVP online','Tamu konfirmasi hadir dan jumlah orang. Kamu memantaunya dari dashboard.'],
-    ['✎','Ucapan dan doa','Ucapan tamu tampil di undangan, dan kamu bisa menyembunyikan yang tidak pantas.'],
-    ['♪','Musik dan animasi','Sampul pembuka, musik latar, dan hitung mundur menuju hari bahagia.'],
-    ['⌖','Peta dan amplop digital','Tautan Google Maps serta nomor rekening dengan tombol salin.'],
-    ['✦','Template adat','Adat Jawa dan Bugis lengkap dengan ornamen dan musik khasnya. Adat lain menyusul.']];
+  var fit=[['link','Link per nama tamu','Ganti nama di ujung link, dan tamu langsung disapa dengan namanya. Tanpa perlu mendaftarkan satu per satu.'],
+    ['ok','RSVP online','Tamu konfirmasi hadir dan jumlah orang. Kamu memantaunya dari dashboard.'],
+    ['msg','Ucapan dan doa','Ucapan tamu tampil di undangan, dan kamu bisa menyembunyikan yang tidak pantas.'],
+    ['music','Musik dan animasi','Sampul pembuka, musik latar, dan hitung mundur menuju hari bahagia.'],
+    ['pin','Peta dan amplop digital','Tautan Google Maps serta nomor rekening dengan tombol salin.'],
+    ['star','Beragam template','Adat Jawa dan Bugis, taman bunga, malam berbintang, pantai senja, art deco, dan minimalis. Terus bertambah.']];
   var faq=[['Apakah tamu perlu memasang aplikasi?','Tidak. Undangan berupa halaman web yang dibuka dari link, di HP maupun komputer.'],
     ['Bagaimana cara mengirim ke banyak tamu?','Ketik nama tamu di dashboard, lalu salin linknya atau kirim lewat WhatsApp. Setiap tamu disapa dengan namanya.'],
     ['Bisakah data diubah setelah undangan aktif?','Bisa. Ubah datanya di dashboard lalu simpan. Link yang sama langsung menampilkan versi terbaru.'],
     ['Apakah musik berbunyi otomatis?','Musik mulai saat tamu menekan Buka undangan, dan bisa dimatikan lewat tombol ♪.']];
+  var reduce=window.matchMedia&&matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var ph=reduce?phoneMock('bintang','p1')+phoneMock('jawa','p2'):phoneLive('bintang','p1')+phoneLive('jawa','p2');
+  var names=TEMPLATES.map(function(t){return '<span>'+esc(t.name)+'</span>'}).join('');
   app.innerHTML=siteHeader()+
   '<main>'+
-  '<section class="hero"><div class="shi hg"><div><span class="chip">✦ Undangan digital · jadi dalam 5 menit</span>'+
+  '<section class="hero"><div class="hbg" aria-hidden="true"><i></i><i></i></div><div class="shi hg"><div><span class="chip">✦ Undangan digital · jadi dalam 5 menit</span>'+
    '<h1>Undangan pernikahan online yang <em>bercerita</em></h1>'+
-   '<p class="lead">Pilih template, isi data, lalu bagikan lewat WhatsApp. Tersedia template adat Jawa dan Bugis lengkap dengan musik dan animasi pembuka.</p>'+
+   '<p class="lead">Pilih dari '+TEMPLATES.length+' template: adat Jawa dan Bugis, taman bunga, malam berbintang, pantai senja, dan lainnya. Lengkap dengan musik dan animasi pembuka.</p>'+
    '<div class="row" style="margin-top:24px"><a class="btn big" href="?daftar=1">Mulai gratis</a><a class="btn o big" href="?katalog=1">Lihat template</a></div>'+
    '<ul class="ticks"><li>Link per nama tamu</li><li>RSVP dan ucapan</li><li>Musik dan hitung mundur</li></ul></div>'+
-   '<div class="phones">'+phoneMock('bugis','p1')+phoneMock('jawa','p2')+'</div></div></section>'+
+   '<div><div class="phones">'+ph+'</div><p class="cap">Contoh undangan diputar otomatis. Ketuk untuk membukanya.</p></div></div></section>'+
+  '<div class="mq" aria-hidden="true"><div class="mqi">'+names+names+'</div></div>'+
   '<section id="cara" class="sec alt"><div class="shi"><p class="eyebrow">Cara kerja</p><h2>Tiga langkah, selesai</h2><div class="steps">'+
-   '<div class="stp"><span>1</span><h3>Pilih template</h3><p>Lihat contoh lengkap dengan animasi dan musiknya, lalu pilih yang paling cocok.</p></div>'+
-   '<div class="stp"><span>2</span><h3>Isi datanya</h3><p>Nama, acara, lokasi, dan cerita kalian. Cukup dari HP, tanpa perlu keahlian desain.</p></div>'+
-   '<div class="stp"><span>3</span><h3>Bagikan ke tamu</h3><p>Salin link atau kirim lewat WhatsApp. Setiap tamu mendapat sapaan dengan namanya.</p></div></div></div></section>'+
+   '<div class="stp rvl"><span>1</span><h3>Pilih template</h3><p>Lihat contoh lengkap dengan animasi dan musiknya, lalu pilih yang paling cocok.</p></div>'+
+   '<div class="stp rvl" style="transition-delay:90ms"><span>2</span><h3>Isi datanya</h3><p>Nama, acara, lokasi, dan cerita kalian. Cukup dari HP, tanpa perlu keahlian desain.</p></div>'+
+   '<div class="stp rvl" style="transition-delay:180ms"><span>3</span><h3>Bagikan ke tamu</h3><p>Salin link atau kirim lewat WhatsApp. Setiap tamu mendapat sapaan dengan namanya.</p></div></div></div></section>'+
   '<section id="fitur" class="sec"><div class="shi"><p class="eyebrow">Fitur</p><h2>Semua yang undanganmu butuhkan</h2><div class="fg">'+
-   fit.map(function(f){return '<div class="fc"><div class="fi">'+f[0]+'</div><h3>'+f[1]+'</h3><p>'+f[2]+'</p></div>'}).join('')+'</div></div></section>'+
+   fit.map(function(f,i){return '<div class="fc rvl" style="transition-delay:'+((i%3)*80)+'ms"><div class="fi">'+ico(f[0])+'</div><h3>'+f[1]+'</h3><p>'+f[2]+'</p></div>'}).join('')+'</div></div></section>'+
   '<section class="sec alt"><div class="shi"><p class="eyebrow">Template</p><h2>Pilih gaya yang kamu suka</h2><p class="lead" style="margin-top:10px">Geser untuk melihat. Ketuk untuk membuka contoh lengkapnya.</p>'+
    '<div class="scroller">'+TEMPLATES.map(tcardHtml).join('')+'</div><a class="btn big" href="?katalog=1">Lihat semua template</a></div></section>'+
   '<section id="harga" class="sec"><div class="shi" style="text-align:center"><p class="eyebrow">Harga</p><h2>Gratis selama masa uji coba</h2>'+
-   '<div class="price"><div class="pn">Rp 0</div><p style="color:var(--soft);margin:4px 0 0">selama masa uji coba</p><ul style="text-align:left"><li>Semua template tersedia</li><li>Tamu tanpa batas</li><li>RSVP dan ucapan</li><li>Musik, hitung mundur, dan peta</li></ul><a class="btn big wfull" href="?daftar=1">Daftar gratis</a></div>'+
+   '<div class="price rvl"><div class="pn">Rp 0</div><p style="color:var(--soft);margin:4px 0 0">selama masa uji coba</p><ul style="text-align:left"><li>Semua template tersedia</li><li>Tamu tanpa batas</li><li>RSVP dan ucapan</li><li>Musik, hitung mundur, dan peta</li></ul><a class="btn big wfull" href="?daftar=1">Daftar gratis</a></div>'+
    '<p style="color:var(--soft);font-size:.88rem;margin-top:14px">Informasi paket berbayar akan diumumkan di sini.</p></div></section>'+
   '<section id="faq" class="sec alt"><div class="shi faq" style="max-width:720px"><p class="eyebrow">FAQ</p><h2>Pertanyaan yang sering muncul</h2>'+
-   faq.map(function(q){return '<details><summary>'+q[0]+'</summary><p>'+q[1]+'</p></details>'}).join('')+'</div></section>'+
-  '<section class="sec"><div class="shi"><div class="ctab"><h2>Buat undangan digitalmu hari ini</h2><p>Mulai gratis, selesai dalam hitungan menit.</p><a class="btn big" href="?daftar=1">Mulai sekarang</a></div></div></section>'+
+   faq.map(function(q){return '<details class="rvl"><summary>'+q[0]+'</summary><p>'+q[1]+'</p></details>'}).join('')+'</div></section>'+
+  '<section class="sec"><div class="shi"><div class="ctab rvl"><h2>Buat undangan digitalmu hari ini</h2><p>Mulai gratis, selesai dalam hitungan menit.</p><a class="btn big" href="?daftar=1">Mulai sekarang</a></div></div></section>'+
   '</main>'+siteFooter();
+  revealObserve();
 }
 
 function catalogView(){
   document.title='Template · '+BRAND;
   pageShell();
-  app.innerHTML=siteHeader()+'<main class="shi" style="padding-top:34px;padding-bottom:50px"><p class="eyebrow">Katalog</p><h2 style="font-size:2rem;margin:0">Pilih template undanganmu</h2><p class="lead" style="margin-top:10px">Lihat contoh lengkap dengan animasi dan musiknya, lalu pilih yang paling cocok.</p><div class="tgrid">'+TEMPLATES.map(tcardHtml).join('')+'</div><a class="btn big" href="?daftar=1">Mulai buat undangan</a></main>'+siteFooter();
+  var cats=['Semua'];TEMPLATES.forEach(function(t){if(cats.indexOf(t.cat)<0)cats.push(t.cat)});
+  app.innerHTML=siteHeader()+'<main class="shi" style="padding-top:34px;padding-bottom:50px"><p class="eyebrow">Katalog</p><h2 style="font-size:2rem;margin:0">Pilih template undanganmu</h2><p class="lead" style="margin-top:10px">Lihat contoh lengkap dengan animasi dan musiknya, lalu pilih yang paling cocok.</p>'+
+   '<div class="chips" id="chips">'+cats.map(function(c){return '<button type="button" data-c="'+esc(c)+'" aria-pressed="'+(c==='Semua')+'">'+esc(c)+'</button>'}).join('')+'</div>'+
+   '<div class="tgrid" id="tg">'+TEMPLATES.map(tcardHtml).join('')+'</div><a class="btn big" href="?daftar=1">Mulai buat undangan</a></main>'+siteFooter();
+  $('chips').onclick=function(e){var b=e.target.closest('button');if(!b)return;
+    document.querySelectorAll('#chips button').forEach(function(x){x.setAttribute('aria-pressed',x===b)});
+    document.querySelectorAll('#tg .tcard').forEach(function(c){c.classList.toggle('hide',b.dataset.c!=='Semua'&&c.dataset.cat!==b.dataset.c)});
+  };
 }
-
 
 async function publicExtras(sb,v,c){
   var code=new URLSearchParams(location.search).get('to'),guest=null;
@@ -641,7 +852,7 @@ function adminView(sb){
   }
   function authForm(mode){
     mode=mode||'masuk';pageShell();
-    app.innerHTML='<div class="authw"><a class="logo" href="./"><span class="lg">✦</span>'+esc(BRAND)+'</a><div class="authc">'+
+    app.innerHTML='<div class="authw">'+logoHtml()+'<div class="authc">'+
       '<div class="seg" id="seg"><button type="button" data-m="masuk">Masuk</button><button type="button" data-m="daftar">Daftar</button></div>'+
       '<h1 id="ah1"></h1><p class="sub" id="asub"></p>'+
       '<label for="em">Email</label><input id="em" type="email" autocomplete="email" inputmode="email">'+
@@ -687,7 +898,7 @@ function adminView(sb){
     var g=function(o,k){return esc(o&&o[k]||'')};
     pageShell();
     app.innerHTML=
-    '<header class="sh"><div class="shi"><a class="logo" href="./"><span class="lg">✦</span>'+esc(BRAND)+'</a><div class="sact"><span class="mail">'+esc(user.email)+'</span><button class="sm" id="out">Keluar</button></div></div></header>'+
+    '<header class="sh"><div class="shi">'+logoHtml()+'<div class="sact"><span class="mail">'+esc(user.email)+'</span><button class="sm" id="out">Keluar</button></div></div></header>'+
     '<main class="dw">'+
     '<div class="lcard"><div class="lstat" id="lstat"></div><p class="link" id="lk"></p><div class="row" id="lact"></div></div>'+
     '<div class="seg3" id="tabs"><button type="button" data-tab="edit" aria-pressed="true">Undangan</button><button type="button" data-tab="guest" aria-pressed="false">Tamu</button><button type="button" data-tab="wish" aria-pressed="false">Ucapan</button></div>'+
@@ -711,7 +922,7 @@ function adminView(sb){
     '</section>'+
     '<section id="tab-guest" class="hide"><div class="panel" id="guestPanel"></div></section>'+
     '<section id="tab-wish" class="hide"><div class="panel" id="wishPanel"></div></section>'+
-    '<p class="msg vtag">Versi 5.0</p></main>'+
+    '<p class="msg vtag">Versi 6.0</p></main>'+
     '<div class="savebar" id="savebar"><button class="btn" id="sv">Simpan</button><button class="btn o" id="pb">'+(inv&&inv.status==='active'?'Nonaktifkan':'Aktifkan undangan')+'</button><span class="msg" id="msg" role="status"></span></div>';
     showLink();guestsPanel();
     $('out').onclick=async function(){await sb.auth.signOut();history.replaceState(null,'',location.pathname);landingView()};
